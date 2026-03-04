@@ -35,14 +35,20 @@ This template supports a structured AI-assisted development flow:
 
 **Operational workflows** (slash commands for common operations):
 
-| Workflow         | Purpose                              |
-| ---------------- | ------------------------------------ |
-| `/full-pipeline` | Guide the full development lifecycle |
-| `/code-review`   | Pre-PR lint, test, security review   |
-| `/deploy`        | Pre-deploy checklist                 |
-| `/preview`       | Start dev server + browser preview   |
-| `/status`        | Project progress overview            |
-| `/add-stack`     | Add/activate stack packs             |
+| Workflow         | Purpose                                       |
+| ---------------- | --------------------------------------------- |
+| `/helpme`        | Universal orchestrator — routes to best skill |
+| `/full-pipeline` | Guide the full development lifecycle          |
+| `/code-review`   | Pre-PR lint, test, security review            |
+| `/deploy`        | Pre-deploy checklist                          |
+| `/preview`       | Start dev server + browser preview            |
+| `/status`        | Project progress overview                     |
+| `/add-stack`     | Add/activate stack packs                      |
+| `/debug`         | Structured debugging flow                     |
+| `/refactor`      | Refactoring with safety checks                |
+| `/test`          | Run or generate tests                         |
+| `/docs`          | Generate/update documentation                 |
+| `/improve-ui`    | UI/UX audit and improvement                   |
 
 **Pipeline orchestration**: See `docs/AGENT_FLOW.md` for skill routing and quality checkpoints.
 

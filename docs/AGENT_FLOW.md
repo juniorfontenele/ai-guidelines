@@ -28,14 +28,17 @@ Map of the complete AI-assisted development pipeline, skill routing, and quality
 
 ### Entry Points
 
-| Starting Point          | Entry Skill                      | When                      |
-| ----------------------- | -------------------------------- | ------------------------- |
-| From zero, vague idea   | `brainstorming`                  | Ideation, exploration     |
-| Clear feature in mind   | `generate-prd` or `task-planner` | Requirements are known    |
-| PRD already exists      | `generate-architecture`          | Architecture needed       |
-| Tasks already exist     | `implement-task`                 | Ready to code             |
-| Bug report              | `bug-fixer`                      | Issue needs investigation |
-| Quick fix (known cause) | `implement-task`                 | Simple, direct fix        |
+| Starting Point          | Entry Skill/Workflow             | When                         |
+| ----------------------- | -------------------------------- | ---------------------------- |
+| Don't know what to do   | `/helpme` workflow               | Universal orchestrator       |
+| From zero, vague idea   | `brainstorming`                  | Ideation, exploration        |
+| Clear feature in mind   | `generate-prd` or `task-planner` | Requirements are known       |
+| PRD already exists      | `generate-architecture`          | Architecture needed          |
+| Tasks already exist     | `implement-task`                 | Ready to code                |
+| Bug report              | `bug-fixer` or `/debug`          | Issue needs investigation    |
+| Quick fix (known cause) | `implement-task`                 | Simple, direct fix           |
+| UI looks bad            | `/improve-ui` workflow           | Visual/UX improvement needed |
+| Code needs cleanup      | `/refactor` workflow             | Restructuring, tech debt     |
 
 ---
 
@@ -43,22 +46,27 @@ Map of the complete AI-assisted development pipeline, skill routing, and quality
 
 ### By User Intent
 
-| User Intent                          | Primary Skill                    | Supporting Skills                             |
-| ------------------------------------ | -------------------------------- | --------------------------------------------- |
-| "Quero criar algo novo"              | `brainstorming` → `generate-prd` | `generate-architecture`, `generate-ui-design` |
-| "Implementar feature X"              | `task-planner`                   | `frontend-development`, `generate-test`       |
-| "Corrigir bug #N"                    | `bug-fixer`                      | `generate-test`                               |
-| "Refatorar módulo X"                 | `task-planner` (refactor)        | `code-reviewer`, `generate-test`              |
-| "Redesenhar tela Y"                  | `brainstorming` (layout)         | `generate-ui-design`, `frontend-development`  |
-| "Review de segurança"                | `security-analyst`               | `project-qa-auditor`                          |
-| "Auditar antes do PR"                | `/code-review` workflow          | `security-analyst`, `code-reviewer`           |
-| "Qual é o status?"                   | `/status` workflow               | —                                             |
-| "Preciso de testes"                  | `generate-test`                  | —                                             |
-| "Autenticação"                       | `developing-with-fortify`        | `frontend-development`                        |
-| "Traduzir / i18n"                    | `i18n-manager`                   | —                                             |
-| "Criar nova skill"                   | `skill-creator`                  | `brainstorming` (skill)                       |
-| "Não sei por onde começar"           | `brainstorming` (guidance)       | —                                             |
-| "Adicionar suporte a Node/Python/Go" | `/add-stack` workflow            | `init-project`                                |
+| User Intent                          | Primary Skill                                    | Supporting Skills                             |
+| ------------------------------------ | ------------------------------------------------ | --------------------------------------------- |
+| "Quero criar algo novo"              | `brainstorming` → `generate-prd`                 | `generate-architecture`, `generate-ui-design` |
+| "Implementar feature X"              | `task-planner`                                   | `frontend-development`, `generate-test`       |
+| "Corrigir bug #N"                    | `bug-fixer`                                      | `generate-test`                               |
+| "Refatorar módulo X"                 | `task-planner` (refactor)                        | `code-reviewer`, `generate-test`              |
+| "Redesenhar tela Y"                  | `brainstorming` (layout)                         | `generate-ui-design`, `frontend-development`  |
+| "Review de segurança"                | `security-analyst`                               | `project-qa-auditor`                          |
+| "Auditar antes do PR"                | `/code-review` workflow                          | `security-analyst`, `code-reviewer`           |
+| "Qual é o status?"                   | `/status` workflow                               | —                                             |
+| "Preciso de testes"                  | `generate-test`                                  | —                                             |
+| "Autenticação"                       | `developing-with-fortify`                        | `frontend-development`                        |
+| "Traduzir / i18n"                    | `i18n-manager`                                   | —                                             |
+| "Criar nova skill"                   | `skill-creator`                                  | `brainstorming` (skill)                       |
+| "Não sei por onde começar"           | `/helpme` workflow or `brainstorming` (guidance) | —                                             |
+| "Adicionar suporte a Node/Python/Go" | `/add-stack` workflow                            | `init-project`                                |
+| "Debug / investigar bug"             | `/debug` workflow                                | `bug-fixer`                                   |
+| "Refatorar módulo X"                 | `/refactor` workflow                             | `code-reviewer`, `generate-test`              |
+| "Rodar testes"                       | `/test` workflow                                 | `generate-test`                               |
+| "Atualizar documentação"             | `/docs` workflow                                 | `generate-architecture`, `generate-prd`       |
+| "Melhorar visual / UI feia"          | `/improve-ui` workflow                           | `frontend-development`, `browser-qa-tester`   |
 
 ### Chaining Rules
 

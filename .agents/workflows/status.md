@@ -4,51 +4,78 @@ description: Show current project development status — progress tracking, acti
 
 # Project Status
 
+Multi-source status check — combines git, progress files, tasks, and code quality.
+
 ## Steps
 
-1. Read progress tracking:
+1. **Git state** (always available):
    // turbo
-   - Read `docs/progress/README.md` for the overall dashboard
+
+   ```bash
+   echo "Branch: $(git branch --show-current)"
+   echo "Uncommitted: $(git status --short | wc -l) files"
+   git log --oneline -5
+   ```
+
+2. **Progress tracking** (if `docs/progress/` exists):
+   // turbo
+   - Read `docs/progress/README.md` for the dashboard
    - Count tasks by status: `TODO`, `IN_PROGRESS`, `DONE`, `BLOCKED`
-   - Calculate completion percentage per epic
+   - Calculate completion by epic
 
-2. Check current git state:
+3. **Task files** (if `docs/tasks/` exists):
+   - Scan for pending tasks
+   - List next 3 `TODO` tasks with IDs and descriptions
+
+4. **Branch analysis** (smart fallback):
+   - Parse current branch name for context:
+     - `feat/X` → working on feature X
+     - `fix/X` → fixing bug X
+     - `refactor/X` → refactoring X
+   - Check recent commit messages for activity summary
+
+5. **Quick quality snapshot**:
    // turbo
-   - Current branch: `git branch --show-current`
-   - Uncommitted changes: `git status --short`
-   - Recent commits: `git log --oneline -5`
-
-3. Find tasks in progress:
-   - Search `docs/progress/` for any `IN_PROGRESS` entries
-   - List them with their epic and start date
-
-4. List next tasks:
-   - Find the next 3 `TODO` tasks from `docs/tasks/`
-   - Show their IDs, names, and dependencies
-
-5. Quick quality check:
-   // turbo
-   - Run `composer lint 2>&1 | tail -5` (or equivalent for detected stack)
+   - Detect stack and run fast lint:
+     - **Laravel**: `vendor/bin/pint --test 2>&1 | tail -3`
+     - **Node.js**: `npm run lint 2>&1 | tail -3`
    - Report: passing or failing
 
-6. Present summary to the user:
+6. **Present summary**:
 
-   ```
+   ```markdown
    ## 📊 Project Status
 
-   ### Progress
+   ### Git
+
+   - **Branch**: `feat/...`
+   - **Recent commits**: [last 5]
+   - **Uncommitted**: X files
+
+   ### Progress (if tracking exists)
+
    | Epic | Done | Total | % |
-   | ...  | ...  | ...   | . |
+   | ... | ... | ... | . |
 
-   ### Current Work
-   - Branch: `feat/...`
-   - In Progress: [task list]
-   - Uncommitted: [count] files
+   ### Current Work (inferred)
 
-   ### Next Up
+   - [from branch name or recent commits]
+
+   ### Next Up (if tasks exist)
+
    1. [TASK-ID] — Description
    2. [TASK-ID] — Description
 
-   ### Quality Gates
+   ### Quality
+
    - Lint: ✅/❌
    ```
+
+## Data Sources Priority
+
+1. **Git** — Always available, always accurate
+2. **docs/progress/** — Available when `generate-task-breakdown` was used
+3. **docs/tasks/** — Available when task planning was done
+4. **Branch + commits** — Inferred context, always available
+
+> If no progress files exist, report git-based status only. Do NOT report "no progress found" — always show SOMETHING useful.

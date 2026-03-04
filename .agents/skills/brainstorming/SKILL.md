@@ -145,12 +145,18 @@ Scan `.agents/workflows/` for available workflows and document them:
 | Workflow                  | Purpose                            | When to Use                            |
 | ------------------------- | ---------------------------------- | -------------------------------------- |
 | `generate-commit-message` | Semantic commit messages           | After completing code changes          |
+| `helpme`                  | Universal orchestrator             | Don't know where to start, any task    |
 | `deploy`                  | Pre-deploy checklist               | Before deploying to staging/production |
 | `preview`                 | Start dev server + browser preview | Validate UI changes locally            |
 | `status`                  | Project progress overview          | Check where the project stands         |
 | `full-pipeline`           | Full development lifecycle         | Starting new project or major feature  |
 | `code-review`             | Pre-PR review                      | Before opening a pull request          |
 | `add-stack`               | Add/activate stack pack            | Adding Node.js, Python, Go support     |
+| `debug`                   | Structured debugging               | Bug investigation beyond simple fix    |
+| `refactor`                | Refactoring with safety checks     | Code restructuring, cleanup            |
+| `test`                    | Run or generate tests              | Test suite, coverage, generate tests   |
+| `docs`                    | Generate/update documentation      | Create or update project docs          |
+| `improve-ui`              | UI/UX audit and improvement        | Fix ugly UI, align with design system  |
 
 > **Note**: Always scan the actual workflow directory for the latest list.
 
