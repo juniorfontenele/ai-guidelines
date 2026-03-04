@@ -187,6 +187,7 @@ Stack packs (additive, activated by `init-project` or `/add-stack`):
 - `stack-node` — Node.js/TypeScript patterns, quality gates, testing
 - `stack-python` — Python patterns, quality gates, testing
 - `stack-go` — Go patterns, quality gates, testing
+- `stack-bash` — Bash/Shell scripting patterns, quality gates, testing
 
 ### Gap Detection
 
@@ -395,7 +396,7 @@ After approval, generate the full brainstorming document using [references/outpu
 
 Save the final document to:
 
-```
+```text
 docs/brainstorming/<NNNN>-<semantic-slug>.md
 ```
 
@@ -478,13 +479,13 @@ Always include "Salvar brainstorming" as the last option.
 
 ### Implementation Plan Artifact (Phase 3)
 
-```
+```text
 <appDataDir>/brain/<conversation-id>/implementation_plan.md
 ```
 
 ### Final Document (Phase 5)
 
-```
+```text
 docs/brainstorming/<NNNN>-<semantic-slug>.md
 ```
 

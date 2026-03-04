@@ -20,7 +20,7 @@ Executes three tools in sequence:
 
 ### Expected Output
 
-```
+```text
 ✓ Pint: No issues found (or auto-fixed)
 ✓ Rector: No issues found (or auto-fixed)  
 ✓ PHPStan: No errors [OK]
@@ -90,7 +90,7 @@ composer test
 
 ### Expected Output (Passing)
 
-```
+```text
 PASS  Tests\Unit\ExampleTest
 ✓ it works
 
@@ -174,7 +174,7 @@ OWASP Top 10 categories:
 
 ### Expected Output
 
-```
+```text
 ✅ Security Analysis: PASS
 
 No security issues found in the analyzed code.
@@ -183,7 +183,7 @@ Task can be marked as DONE.
 
 Or with warnings:
 
-```
+```text
 ✅ Security Analysis: PASS WITH WARNINGS
 
 No blocking issues found. The following recommendations are optional:
@@ -196,7 +196,7 @@ Task can be marked as DONE. Do you want to address these recommendations first?
 
 ### Blocking Issues
 
-```
+```text
 ⚠️ Security Analysis: BLOCKING ISSUES FOUND
 
 Task cannot be marked as DONE until the following issues are resolved:
@@ -220,7 +220,7 @@ Do you want me to show detailed fix recommendations?
 
 Execute gates in this order:
 
-```
+```text
 1. composer lint     (fast, auto-fixes available)
 ↓
 2. composer test     (validates behavior)

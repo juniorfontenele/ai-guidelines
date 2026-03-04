@@ -146,17 +146,18 @@ Detectei tudo automaticamente. Preciso apenas de:
 
 ```markdown
 9️⃣ **Idioma do agente** — Em qual idioma devo me comunicar com você?
-a) pt-BR (padrão — respostas, comentários, commits em pt-BR)
-b) en (respostas, comentários, commits em inglês)
+a) pt-BR (padrão — respostas e documentação em pt-BR)
+b) en (respostas e documentação em inglês)
 c) Outro (especifique)
 ```
 
 This sets the `locale` field in `.ai-guidelines.json` and affects:
 
 - Agent responses and explanations
-- Commit messages and PR descriptions
 - Code comments (when not using English convention)
 - Documentation generation language
+
+> **Note:** Commit messages, branch names, and PR descriptions are **always in English** regardless of locale setting, following Git/GitHub conventions.
 
 ---
 

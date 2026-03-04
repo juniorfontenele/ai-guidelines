@@ -77,12 +77,16 @@ from app.models.user import CreateUserDto, UserResponse
 router = APIRouter(prefix="/api/users", tags=["users"])
 
 
+def get_users_service() -> UsersService:
+    return UsersService(repository=UsersRepository())
+
+
 @router.get("/", response_model=list[UserResponse])
-async def list_users(service: UsersService = Depends()):
+async def list_users(service: UsersService = Depends(get_users_service)):
     return await service.find_all()
 
 
 @router.post("/", response_model=UserResponse, status_code=201)
-async def create_user(data: CreateUserDto, service: UsersService = Depends()):
+async def create_user(data: CreateUserDto, service: UsersService = Depends(get_users_service)):
     return await service.create(data)
 ```

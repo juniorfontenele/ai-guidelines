@@ -47,7 +47,7 @@ mypy src/                 # Check specific directory
 ## Security
 
 ```bash
-pip audit                 # Check for known vulnerabilities
+pip-audit                 # Check for known vulnerabilities
 bandit -r src/            # Static security analysis
 ```
 
@@ -61,5 +61,5 @@ ruff check . && ruff format . --check && mypy .
 ruff check . && ruff format . --check && mypy . && pytest
 
 # Before deploy
-ruff check . && mypy . && pytest --cov && pip audit
+ruff check . && mypy . && pytest --cov && pip-audit
 ```

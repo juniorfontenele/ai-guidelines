@@ -19,11 +19,15 @@ run_gate() {
     local cmd="$2"
     if eval "$cmd" > /dev/null 2>&1; then
         green "$name"
-        ((PASS++))
+        PASS=$((PASS + 1))
     else
         red "$name"
-        ((FAIL++))
+        FAIL=$((FAIL + 1))
     fi
+}
+
+has_npm_script() {
+    npm pkg get "scripts.$1" 2>/dev/null | grep -qv "null"
 }
 
 header "Detecting Stack"
@@ -45,9 +49,23 @@ if [ -f "package.json" ]; then
 
     header "Node.js Quality Gates"
     if command -v npm > /dev/null 2>&1; then
-        npm run lint > /dev/null 2>&1 && run_gate "ESLint (lint)" "npm run lint" || yellow "No lint script found"
-        npm run types > /dev/null 2>&1 && run_gate "TypeScript (types)" "npm run types" || true
-        npm test > /dev/null 2>&1 && run_gate "Tests" "npm test" || yellow "No test script found"
+        if has_npm_script lint; then
+            run_gate "ESLint (lint)" "npm run lint"
+        else
+            yellow "No lint script found"
+        fi
+
+        if has_npm_script types; then
+            run_gate "TypeScript (types)" "npm run types"
+        else
+            yellow "No types script found"
+        fi
+
+        if has_npm_script test; then
+            run_gate "Tests" "npm test"
+        else
+            yellow "No test script found"
+        fi
     fi
 fi
 

@@ -21,7 +21,7 @@ Unified skill for implementing frontend interfaces with the project's full stack
 
 ### Project Structure
 
-```
+```text
 resources/js/
 ├── components/          # Shared components
 │   ├── ui/              # UI primitives (Button, Card, Dialog, etc.)

@@ -209,10 +209,8 @@ bold()   { echo -e "\033[1m$1\033[0m"; }
 
 ```bash
 TMP_DIR=$(mktemp -d)
-trap 'rm -rf "$TMP_DIR"' EXIT
-
 TMP_FILE=$(mktemp)
-trap 'rm -f "$TMP_FILE"' EXIT
+trap 'rm -rf "$TMP_DIR" "$TMP_FILE"' EXIT
 ```
 
 ---

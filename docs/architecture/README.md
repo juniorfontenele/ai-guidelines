@@ -2,7 +2,7 @@
 
 This directory contains the system architecture documentation. Generate it using:
 
-```
+```text
 /generate-architecture
 ```
 

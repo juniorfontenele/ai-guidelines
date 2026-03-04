@@ -173,7 +173,7 @@ From CODE_STANDARDS.md:
 
 **All gates MUST pass before completing a task.** See `docs/engineering/QUALITY_GATES.md` for the full specification.
 
-> Execute gates in order: **Lint → Test → i18n → Security**. See the canonical doc for stack-specific commands, three pillar requirements, and failure handling.
+> Execute gates in order: **Lint → Test → i18n → Security**. See the canonical doc for stack-specific commands, three-pillar requirements, and failure handling.
 
 See [references/gate-checklist.md](references/gate-checklist.md) for detailed validation steps specific to this skill.
 

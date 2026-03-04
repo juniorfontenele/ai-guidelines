@@ -6,7 +6,7 @@ Thank you for your interest in contributing! This document explains how the proj
 
 ## Project Structure
 
-```
+```text
 .agents/
 ├── skills/          # Specialized AI skill executors
 │   └── <skill>/
@@ -70,7 +70,7 @@ Instructions...
 
 Place supplementary docs in `references/`:
 
-```
+```text
 <skill-name>/
 ├── SKILL.md
 └── references/
@@ -117,8 +117,7 @@ description: "One-line description. Include trigger examples (e.g., 'use when...
    ```bash
    # Commands with // turbo can be auto-run
    echo "hello"
-````
-
+   ```
 ````
 
 ### Annotations
@@ -138,13 +137,13 @@ Follow the same structure as a regular skill at `.agents/skills/stack-<name>/SKI
 
 ### 2. Required sections
 
-| Section | What to include |
-|---------|----------------|
-| Standards | Language/framework-specific coding standards |
-| Linting | Tool configuration and commands |
-| Testing | Framework, patterns, commands |
-| Quality Gates | Stack-specific gate commands |
-| Patterns | Idiomatic patterns and anti-patterns |
+| Section       | What to include                              |
+| ------------- | -------------------------------------------- |
+| Standards     | Language/framework-specific coding standards |
+| Linting       | Tool configuration and commands              |
+| Testing       | Framework, patterns, commands                |
+| Quality Gates | Stack-specific gate commands                 |
+| Patterns      | Idiomatic patterns and anti-patterns         |
 
 ### 3. Update detection
 
@@ -162,9 +161,9 @@ Add new gate commands to `.agents/scripts/verify-quality-gates.sh`.
 
 ```bash
 npm test
-````
+```
 
-This runs 7 tests covering install, update, dry-run, force overwrite, manifest integrity, and help.
+This runs the CLI tests and guidelines validation suite.
 
 ### Guidelines validation
 
@@ -180,7 +179,7 @@ This validates: frontmatter, relative paths, skill sync, workflow references, an
 
 ### Branch naming
 
-```
+```text
 feat/<description>     # New skills, workflows, features
 fix/<description>      # Bug fixes
 docs/<description>     # Documentation updates
@@ -189,7 +188,7 @@ refactor/<description> # Restructuring
 
 ### Commit format
 
-```
+```text
 <type>(<scope>): <description>
 
 Types: feat, fix, docs, refactor, style, test, chore

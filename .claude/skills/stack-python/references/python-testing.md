@@ -20,6 +20,7 @@ addopts = "-v --tb=short"
 import pytest
 from app.services.users import UsersService
 from app.errors import NotFoundError, ValidationError
+from tests.helpers import MockUser
 
 
 class TestUsersService:
@@ -84,13 +85,14 @@ async def test_db():
 ## API Tests (FastAPI)
 
 ```python
-from httpx import AsyncClient
+from httpx import ASGITransport, AsyncClient
 from app.main import app
 
 
 @pytest.fixture
 async def client():
-    async with AsyncClient(app=app, base_url="http://test") as client:
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
         yield client
 
 

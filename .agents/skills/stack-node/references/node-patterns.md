@@ -102,24 +102,30 @@ export type Config = z.infer<typeof envSchema>;
 ## Async Patterns
 
 ```typescript
-// Prefer async/await
-async function processItems(items: Item[]): Promise<Result[]> {
-  // Sequential (when order matters)
+// Sequential (when order matters)
+async function processSequentially(items: Item[]): Promise<Result[]> {
   const results: Result[] = [];
   for (const item of items) {
     results.push(await processItem(item));
   }
+  return results;
+}
 
-  // Parallel (when independent)
+// Parallel (when independent)
+async function processInParallel(items: Item[]): Promise<Result[]> {
   return Promise.all(items.map(processItem));
+}
 
-  // Controlled concurrency
-  const batchSize = 10;
+// Controlled concurrency (batched)
+async function processInBatches(
+  items: Item[],
+  batchSize = 10,
+): Promise<Result[]> {
+  const results: Result[] = [];
   for (let i = 0; i < items.length; i += batchSize) {
     const batch = items.slice(i, i + batchSize);
     results.push(...(await Promise.all(batch.map(processItem))));
   }
-
   return results;
 }
 ```

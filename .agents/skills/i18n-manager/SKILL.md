@@ -158,7 +158,7 @@ Save detailed report if user requests it.
 
 Group proposed changes by file:
 
-```
+```text
 📁 app/Http/Controllers/Admin/ProjectController.php
   L42: 'Project not found' → __('Project not found.')
   L67: 'Created successfully' → __('Created successfully.')
@@ -172,7 +172,7 @@ Group proposed changes by file:
 
 Also propose new translation entries:
 
-```
+```text
 📁 lang/pt_BR.json — New entries:
   "Project not found.": "[NEEDS TRANSLATION]"
   "Created successfully.": "[NEEDS TRANSLATION]"

@@ -54,7 +54,7 @@ SOLID applied pragmatically — improve clarity, not add layers.
 
 `app/Extensions/` is for **non-domain customizations** of installed packages:
 
-```
+```text
 app/Extensions/
 ├── ActivityLog/          # Spatie ActivityLog model overrides
 ├── Fortify/              # Custom Fortify actions and guards

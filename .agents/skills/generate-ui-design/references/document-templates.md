@@ -252,7 +252,7 @@ Templates for each design document. Adapt sections as needed for the specific pr
 - Reuse `ui/` components before creating new ones
 - Create shared components when used in 2+ pages
 - Page-specific components stay in the page file unless > 50 lines
-```
+```text
 
 ---
 

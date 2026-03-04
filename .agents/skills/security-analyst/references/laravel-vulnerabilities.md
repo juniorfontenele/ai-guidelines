@@ -477,7 +477,7 @@ Log::info('Payment processed', [
 
 Use these regex patterns to quickly identify potential vulnerabilities:
 
-```
+```text
 # SQL Injection
 DB::raw\s*\([^?]
 whereRaw\s*\([^?]

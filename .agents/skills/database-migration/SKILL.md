@@ -18,7 +18,7 @@ Before creating any migration:
 
 ### Step 1: Inspect Current Schema
 
-```
+```text
 Use `database-schema` MCP tool with summary mode to understand current state.
 ```
 
@@ -44,7 +44,7 @@ Ensure no conflicting or duplicate migrations exist.
 
 ### Naming Convention
 
-```
+```text
 YYYY_MM_DD_HHMMSS_<action>_<table>_table.php
 ```
 
@@ -80,7 +80,7 @@ When adding columns to existing tables, place them logically:
 
 ### Rename Column (3-step pattern)
 
-```
+```text
 Migration 1: Add new column, copy data
 Migration 2: Update code to use new column (deploy)
 Migration 3: Drop old column
@@ -88,7 +88,7 @@ Migration 3: Drop old column
 
 ### Add Non-Nullable Column (2-step pattern)
 
-```
+```text
 Migration 1: Add column as nullable with default
 Migration 2: Backfill data, then alter to NOT NULL
 ```

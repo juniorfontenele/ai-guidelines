@@ -72,7 +72,7 @@ No commits are allowed without passing `composer lint`.
 
 ### Branch Naming
 
-```
+```text
 <type>/<short-description>
 
 Types:
@@ -98,7 +98,7 @@ git checkout -b refactor/payment-service
 
 ### Semantic Commits
 
-```
+```text
 <type>(<scope>): <short description>
 
 [optional body explaining what and why]
@@ -108,14 +108,14 @@ Types: `feat`, `fix`, `refactor`, `chore`, `docs`, `test`, `style`, `perf`
 
 Examples:
 
-```
+```text
 feat(auth): add two-factor authentication setup page
 
 Implemented the 2FA configuration page using Fortify's TOTP support
 with QR code display and recovery code management.
 ```
 
-```
+```text
 fix(notifications): prevent duplicate email on password reset
 ```
 

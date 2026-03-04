@@ -55,7 +55,7 @@ Every feature/endpoint MUST cover all three pillars:
 
 ### When tests are required
 
-- Invoke `generate-test` skill to create tests following the three pillar approach
+- Invoke `generate-test` skill to create tests following the three-pillar approach
 - Commit: `test(scope): add tests for [feature]`
 
 ### When tests fail

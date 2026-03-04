@@ -24,7 +24,7 @@ export default defineConfig({
 
 Follow the **Three Pillar** pattern from `docs/engineering/TESTING.md`:
 
-```
+```text
 tests/
 ├── unit/                    # Pure logic, no I/O
 │   ├── services/

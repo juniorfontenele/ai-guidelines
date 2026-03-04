@@ -230,7 +230,7 @@ For each page in the inventory, describe:
 
 Write all design documentation to:
 
-```
+```text
 docs/design/
 ├── DESIGN_SYSTEM.md
 ├── PAGE_INVENTORY.md

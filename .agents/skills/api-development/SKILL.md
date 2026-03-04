@@ -76,7 +76,7 @@ Route::prefix('v1')->group(function () {
 class UserController extends Controller
 {
     // GET /api/v1/users
-    public function index(Request $request): JsonResponse
+    public function index(IndexUserRequest $request): JsonResponse
     {
         $this->authorize('viewAny', User::class);
 

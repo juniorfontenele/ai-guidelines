@@ -6,7 +6,7 @@ This document explains how the AI Guidelines system works **for the AI agent**. 
 
 ## System Overview
 
-```
+```text
 project-root/
 ├── CLAUDE.md                  ← Main config file. Source of truth for standards, philosophy, and project-specific settings.
 ├── HOW_IT_WORKS.md            ← This file. System meta-documentation.
@@ -64,7 +64,7 @@ The routing table in `docs/AGENT_FLOW.md` §2 maps common intents to skills/work
 
 Quality gates are defined in `docs/engineering/QUALITY_GATES.md` (canonical source).
 
-```
+```text
 Planning ──▶ Security Threat Analysis + i18n Planning (§3.1 of AGENT_FLOW.md)
      │
      ▼
