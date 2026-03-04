@@ -5,6 +5,7 @@ dependencies:
   skills: [generate-test, security-analyst]
   docs:
     [
+      docs/engineering/STACK.md,
       docs/engineering/QUALITY_GATES.md,
       docs/engineering/CODE_STANDARDS.md,
       docs/engineering/TESTING.md,

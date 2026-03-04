@@ -72,7 +72,7 @@ A structured detection report (internal, not shown to user yet):
 ```text
 Project Type: application | package | monorepo
 Project Name: <from composer.json or package.json>
-Stack: Laravel | Node.js | Python | Go | Bash | Multi-stack
+Stack: Laravel | PHP | Node.js | Python | Go | Bash | Multi-stack
 Monorepo: yes | no (if yes, list workspace packages)
 Locale: <detected locale or 'en' default>
 PHP Version: <detected> (if applicable)

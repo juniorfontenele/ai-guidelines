@@ -40,7 +40,7 @@ Design and implement RESTful APIs with consistent patterns.
 | 200  | Success with body                         |
 | 201  | Created                                   |
 | 204  | Success, no body (DELETE)                 |
-| 400  | Validation error                          |
+| 400  | Bad request (malformed syntax)            |
 | 401  | Unauthenticated                           |
 | 403  | Unauthorized (no permission)              |
 | 404  | Not found                                 |
@@ -82,7 +82,7 @@ class UserController extends Controller
 
         $users = User::query()
             ->filter($request->validated())
-            ->paginate($request->integer('per_page', 15));
+            ->paginate(min($request->integer('per_page', 15), 100));
 
         return UserResource::collection($users)->response();
     }

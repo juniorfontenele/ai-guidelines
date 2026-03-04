@@ -36,7 +36,7 @@ If the user's request is trivial (a question, single-line fix, renaming, or simp
 
 5. Framework validation:
    - Use available documentation search or MCP tools (e.g., search-docs)
-   - Prefer correct Laravel-native approaches over custom abstractions
+   - Prefer native framework/stack approaches over custom abstractions
 
 > **Note (API-only projects)**: If the project has no frontend (no `resources/js/`, no React/Vue),
 > skip frontend-related rules (design system, visual consistency, component reuse) and

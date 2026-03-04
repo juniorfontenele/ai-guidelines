@@ -28,6 +28,11 @@ assert() {
     fi
 }
 
+has_frontmatter() {
+    local file="$1"
+    [ -f "$file" ] && awk 'NR==1 { exit ($0 != "---") }' "$file"
+}
+
 section() {
     echo ""
     bold "── $1 ──"
@@ -60,7 +65,7 @@ for skill_dir in "$ROOT_DIR"/.agents/skills/*/; do
     assert "Skill '$skill_name' has SKILL.md" test -f "$skill_file"
 
     if [ -f "$skill_file" ]; then
-        assert "Skill '$skill_name' has frontmatter" head -1 "$skill_file"
+        assert "Skill '$skill_name' has frontmatter" has_frontmatter "$skill_file"
         assert "Skill '$skill_name' has description" grep -q '^description:' "$skill_file"
     fi
 done
@@ -107,7 +112,7 @@ section "Workflow Frontmatter"
 for workflow_file in "$ROOT_DIR"/.agents/workflows/*.md; do
     workflow_name=$(basename "$workflow_file" .md)
 
-    assert "Workflow '$workflow_name' has frontmatter" head -1 "$workflow_file"
+    assert "Workflow '$workflow_name' has frontmatter" has_frontmatter "$workflow_file"
     assert "Workflow '$workflow_name' has description" grep -q '^description:' "$workflow_file"
 done
 
@@ -117,7 +122,7 @@ section "Rules Frontmatter"
 for rule_file in "$ROOT_DIR"/.agents/rules/*.md; do
     rule_name=$(basename "$rule_file" .md)
 
-    assert "Rule '$rule_name' has frontmatter" head -1 "$rule_file"
+    assert "Rule '$rule_name' has frontmatter" has_frontmatter "$rule_file"
     assert "Rule '$rule_name' has trigger" grep -q '^trigger:' "$rule_file"
 done
 

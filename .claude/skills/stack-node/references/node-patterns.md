@@ -44,7 +44,10 @@ export class UsersRepository {
   constructor(private readonly db: Database) {}
 
   async findMany(filters: UserFilters): Promise<User[]> {
-    return this.db.query("SELECT * FROM users WHERE ...", filters);
+    return this.db.query(
+      "SELECT * FROM users WHERE status = $1 ORDER BY created_at DESC LIMIT $2 OFFSET $3",
+      [filters.status, filters.limit ?? 50, filters.offset ?? 0],
+    );
   }
 }
 ```

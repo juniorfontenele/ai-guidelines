@@ -10,7 +10,7 @@
 Code Change ──▶ Lint ──▶ Test ──▶ i18n ──▶ Security ──▶ Commit
 ```
 
-Always execute in order. All four gates MUST pass before committing.
+Always execute in order. All four gates MUST pass before committing (see [Gate Failure Handling](#gate-failure-handling) for explicit exceptions).
 
 ---
 
@@ -118,9 +118,11 @@ If any gate fails:
 1. Report the failure clearly
 2. Propose a fix
 3. Ask how to proceed:
-   - 1️⃣ **Fix and retry** — attempt to fix the issue
-   - 2️⃣ **Skip with justification** — proceed despite failure (user must confirm)
+   - 1️⃣ **Fix and retry** — attempt to fix the issue (default)
+   - 2️⃣ **Skip with justification** — proceed despite failure (requires explicit user approval; must document reason in commit message)
    - 3️⃣ **Abort** — stop the current task
+
+> **Note**: Option 2 is an escape hatch, not a shortcut. The user MUST confirm and provide a reason.
 
 ---
 

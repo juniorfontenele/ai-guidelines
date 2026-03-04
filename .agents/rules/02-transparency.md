@@ -15,7 +15,7 @@ Every response that involves code changes MUST include a summary block listing:
 
 ### Required Disclosures
 
-- **Rule(s) applied**: which `.agents/rules/*.md` files guided the response
+- **Rule(s) applied**: which rules files guided the response (`.agents/rules/` or `.claude/rules/`)
 - **Skill(s) used**: which `.agents/skills/**/SKILL.md` was followed (if any)
 - **Docs consulted**: which `docs/**/*.md` files were referenced for decisions
 - **Code patterns followed**: which existing files/classes served as reference
@@ -27,10 +27,10 @@ Use a concise block at the end of the response:
 
 ```text
 📋 Decisions & Sources:
-- Rule: 01-quality-shield.md (testing standards, config hierarchy)
+- Rule: 01-quality-shield.md (testing standards, doc maintenance)
 - Skill: implement-task (SKILL.md)
-- Docs: SECURITY.md (cross-tenant isolation), CONFIGURATION.md (tenant settings)
-- Pattern: followed existing VulnerabilityPolicy structure
+- Docs: SECURITY.md (authorization), CODE_STANDARDS.md (naming conventions)
+- Pattern: followed existing Policy structure
 - Decision: used Action instead of Service because it's a single-purpose operation
 ```
 
@@ -124,18 +124,18 @@ When presenting options or asking for user decisions, use a clear visual menu:
 ### Format
 
 ```markdown
-## 🎯 Sua Decisão
+## 🎯 Decision Required
 
 1️⃣ **Option A** — Short description
 2️⃣ **Option B** — Short description
 3️⃣ **Option C** — Short description
 
-> Responda o número, combine opções (ex: "1 e 3"), ou comente livremente.
+> Reply with a number, combine (e.g., "1 and 3"), or comment freely.
 ```
 
 ### Rules
 
-- Always use `## 🎯 Sua Decisão` as the section header when asking for user input
+- Always use `## 🎯 Decision Required` as the section header when asking for user input (adapt language per `CLAUDE.md` §8)
 - Use numbered emojis (1️⃣ 2️⃣ 3️⃣) for scannable options
 - Keep descriptions short — one line per option
 - Include a footer inviting free-form comments
