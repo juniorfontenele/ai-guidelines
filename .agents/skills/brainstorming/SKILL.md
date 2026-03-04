@@ -142,9 +142,15 @@ Read the actual SKILL.md files to build an up-to-date catalog. The following is 
 
 Scan `.agents/workflows/` for available workflows and document them:
 
-| Workflow                  | Purpose                  | When to Use                   |
-| ------------------------- | ------------------------ | ----------------------------- |
-| `generate-commit-message` | Semantic commit messages | After completing code changes |
+| Workflow                  | Purpose                            | When to Use                            |
+| ------------------------- | ---------------------------------- | -------------------------------------- |
+| `generate-commit-message` | Semantic commit messages           | After completing code changes          |
+| `deploy`                  | Pre-deploy checklist               | Before deploying to staging/production |
+| `preview`                 | Start dev server + browser preview | Validate UI changes locally            |
+| `status`                  | Project progress overview          | Check where the project stands         |
+| `full-pipeline`           | Full development lifecycle         | Starting new project or major feature  |
+| `code-review`             | Pre-PR review                      | Before opening a pull request          |
+| `add-stack`               | Add/activate stack pack            | Adding Node.js, Python, Go support     |
 
 > **Note**: Always scan the actual workflow directory for the latest list.
 
@@ -168,6 +174,19 @@ Supporting skills (can be invoked at any point):
 - `developing-with-fortify` — Reference for auth features
 - `generate-persona` — Create persona profiles for feedback testing
 - `generate-persona-feedback` — Simulate persona behavior and generate actionable feedback
+
+Stack packs (additive, activated by `init-project` or `/add-stack`):
+
+- `stack-node` — Node.js/TypeScript patterns, quality gates, testing
+- `stack-python` — Python patterns, quality gates, testing
+- `stack-go` — Go patterns, quality gates, testing
+
+### Gap Detection
+
+During discovery, check if the detected/discussed stack has a matching stack pack. If not:
+
+> ⚠️ Seu projeto usa **[stack]**, mas o pack `stack-[name]` não está ativado.
+> Recomendo rodar `/add-stack` para ativar patterns e quality gates específicos.
 
 ### 4.4 Matching Rules
 
@@ -223,11 +242,11 @@ If none of the trigger conditions are met, **skip this phase entirely** and proc
 2. **Search** — Use `search_web` or `mcp_docker_mcp_search` to find relevant pages (max **3-5 queries**)
 3. **Deep dive** — Use `mcp_docker_mcp_fetch_content` to extract detailed content from the most relevant URLs (max **3 pages**)
 4. **Synthesize** — Structure findings into:
-    - Key features and capabilities
-    - Architecture patterns or technical approaches
-    - UX/UI design patterns
-    - Pricing models (if relevant)
-    - Strengths and weaknesses
+   - Key features and capabilities
+   - Architecture patterns or technical approaches
+   - UX/UI design patterns
+   - Pricing models (if relevant)
+   - Strengths and weaknesses
 5. **Integrate** — Feed research findings into Phase 2 (Structured Thinking) as additional input
 
 ### Guardrails

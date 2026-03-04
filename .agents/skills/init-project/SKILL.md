@@ -59,6 +59,10 @@ Silently gather as much project context as possible before asking the user anyth
 5. **Has `resources/views/` + no `@inertiajs`** → Blade/Livewire frontend
 6. **Has `config/fortify.php`** → Fortify auth
 7. **Has `config/sanctum.php`** → Sanctum auth (API tokens)
+8. **Has `package.json` without `composer.json`** → Node.js project
+9. **Has `go.mod`** → Go project
+10. **Has `requirements.txt` or `pyproject.toml`** → Python project
+11. **Has `Cargo.toml`** → Rust project
 
 ### Output
 
@@ -66,9 +70,11 @@ A structured detection report (internal, not shown to user yet):
 
 ```
 Project Type: application | package
-Project Name: <from composer.json>
-PHP Version: <detected>
-Laravel Version: <detected>
+Project Name: <from composer.json or package.json>
+Stack: Laravel | Node.js | Python | Go | Rust | Multi-stack
+PHP Version: <detected> (if applicable)
+Laravel Version: <detected> (if applicable)
+Node Version: <detected> (if applicable)
 Frontend: React+Inertia | Livewire | Blade | API-only | None
 Styling: Tailwind v4 | Tailwind v3 | None
 Database: MySQL | PostgreSQL | SQLite | None
@@ -76,6 +82,50 @@ Auth: Fortify | Sanctum | None
 Key Packages: [list]
 Models: [list if available]
 ```
+
+---
+
+## 2.5. Phase 1.5: Gap Analysis
+
+After detection, cross-reference detected/desired stack with available stack packs and skills:
+
+### Gap Detection Steps
+
+1. List available stack packs: scan `.agents/skills/stack-*/SKILL.md`
+2. List available workflows: scan `.agents/workflows/*.md`
+3. Compare against detected stack:
+   - Is the stack pack for the detected stack present?
+   - Are relevant workflows available?
+4. Identify gaps (missing packs, inactive skills)
+
+### For Existing Projects (detection mode)
+
+If gaps are found, present them:
+
+```markdown
+## 🔍 Gap Analysis
+
+Detectei que seu projeto usa **Node.js + TypeScript**, mas faltam:
+
+1️⃣ **stack-node** — Patterns, quality gates e testing para Node.js
+2️⃣ **Workflow /deploy** — Checklist de deploy (não configurado)
+
+> Deseja ativar esses componentes? (ex: "1 e 2", "todos", "nenhum")
+```
+
+### For New Projects (inception mode)
+
+If the user is describing a new project and specifies the desired stack:
+
+1. Check if the stack pack exists
+2. If missing, suggest using `/add-stack` workflow first
+3. If present, suggest activation and continue with init
+
+### Rules
+
+- Do NOT block initialization for missing packs — report and continue
+- Always suggest activation, never auto-activate without user consent
+- If a Laravel project: all core skills are available, no gaps expected
 
 ---
 

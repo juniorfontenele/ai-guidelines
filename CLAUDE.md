@@ -33,6 +33,19 @@ This template supports a structured AI-assisted development flow:
 
 **Alternative**: **`/task-planner`** — Plan features, tasks, or refactors from natural language descriptions. Routes to `implement-task` for execution after approval.
 
+**Operational workflows** (slash commands for common operations):
+
+| Workflow         | Purpose                              |
+| ---------------- | ------------------------------------ |
+| `/full-pipeline` | Guide the full development lifecycle |
+| `/code-review`   | Pre-PR lint, test, security review   |
+| `/deploy`        | Pre-deploy checklist                 |
+| `/preview`       | Start dev server + browser preview   |
+| `/status`        | Project progress overview            |
+| `/add-stack`     | Add/activate stack packs             |
+
+**Pipeline orchestration**: See `docs/AGENT_FLOW.md` for skill routing and quality checkpoints.
+
 Additional skills for development:
 
 | Skill                       | When to use                                                |
@@ -52,6 +65,16 @@ Additional skills for development:
 | `generate-persona`          | Generate structured persona profiles                       |
 | `generate-persona-feedback` | Simulate persona behavior, generate feedback               |
 | `skill-creator`             | Creating new skills                                        |
+
+**Stack Packs** (additive, activated by `init-project` or `/add-stack`):
+
+| Stack Pack     | When to use                                         |
+| -------------- | --------------------------------------------------- |
+| `stack-node`   | Node.js/TypeScript patterns, quality gates, testing |
+| `stack-python` | Python patterns, quality gates, testing             |
+| `stack-go`     | Go patterns, quality gates, testing                 |
+
+> Stack packs are **additive layers**. They add patterns and quality gates for the target stack without removing existing skills. Core skills remain available regardless of stack.
 
 Before performing a task: search for a relevant skill, follow it strictly, do not mix responsibilities.
 
@@ -80,6 +103,7 @@ Before performing a task: search for a relevant skill, follow it strictly, do no
 | Deploy / CI          | `docs/engineering/DEPLOY.md` (TODO)     |
 | Persona profiles     | `docs/personas/*.md`                    |
 | Persona feedbacks    | `docs/feedbacks/**/*.md`                |
+| Agent flow           | `docs/AGENT_FLOW.md`                    |
 
 Search `docs/` before asking questions. Prefer existing documents over assumptions.
 
