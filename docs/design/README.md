@@ -2,7 +2,7 @@
 
 This directory contains UI/UX design specifications. Generate them using:
 
-```
+```text
 /generate-ui-design
 ```
 

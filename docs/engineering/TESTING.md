@@ -25,7 +25,7 @@
 
 ## Test Structure
 
-```
+```text
 tests/
 ├── Pest.php           # Pest configuration and shared setup
 ├── TestCase.php       # Base test case class

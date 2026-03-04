@@ -59,7 +59,7 @@ Invoke **security-analyst** skill on modified files:
 
 ## Gate Order
 
-```
+```text
 1. composer lint              (fast, auto-fixes)
    npm run lint && npm run types
 ↓

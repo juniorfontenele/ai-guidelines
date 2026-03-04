@@ -20,7 +20,7 @@ Never override a skill or documentation rule using assumptions.
 
 ## 2. Template Development Workflow
 
-This template supports a structured AI-assisted development flow:
+This template supports a structured AI-assisted development flow. For the complete lifecycle, skill routing, and quality gates, see `docs/AGENT_FLOW.md`.
 
 0. **`/init-project`** — First-time setup: detect project context, adapt guidelines
 1. **`/brainstorming`** — Structure ideas, explore options, refine specs in `docs/brainstorming/`
@@ -32,6 +32,26 @@ This template supports a structured AI-assisted development flow:
 7. **`/implement-task`** — Implement individual tasks with quality gates
 
 **Alternative**: **`/task-planner`** — Plan features, tasks, or refactors from natural language descriptions. Routes to `implement-task` for execution after approval.
+
+**Operational workflows** (slash commands for common operations):
+
+| Workflow         | Purpose                                       |
+| ---------------- | --------------------------------------------- |
+| `/helpme`        | Universal orchestrator — routes to best skill |
+| `/full-pipeline` | Guide the full development lifecycle          |
+| `/code-review`   | Pre-PR lint, test, security review            |
+| `/deploy`        | Pre-deploy checklist                          |
+| `/preview`       | Start dev server + browser preview            |
+| `/status`        | Project progress overview                     |
+| `/add-stack`     | Add/activate stack packs                      |
+| `/debug`         | Structured debugging flow                     |
+| `/refactor`      | Refactoring with safety checks                |
+| `/test`          | Run or generate tests                         |
+| `/docs`          | Generate/update documentation                 |
+| `/improve-ui`    | UI/UX audit and improvement                   |
+| `/i18n`          | Translation audit, fix, and sync              |
+
+**Mandatory gates**: Security and i18n are enforced at both planning and post-code stages. See `docs/AGENT_FLOW.md` §3.
 
 Additional skills for development:
 
@@ -52,6 +72,16 @@ Additional skills for development:
 | `generate-persona`          | Generate structured persona profiles                       |
 | `generate-persona-feedback` | Simulate persona behavior, generate feedback               |
 | `skill-creator`             | Creating new skills                                        |
+
+**Stack Packs** (additive, activated by `init-project` or `/add-stack`):
+
+| Stack Pack     | When to use                                         |
+| -------------- | --------------------------------------------------- |
+| `stack-node`   | Node.js/TypeScript patterns, quality gates, testing |
+| `stack-python` | Python patterns, quality gates, testing             |
+| `stack-go`     | Go patterns, quality gates, testing                 |
+
+> Stack packs are **additive layers**. They add patterns and quality gates for the target stack without removing existing skills. Core skills remain available regardless of stack.
 
 Before performing a task: search for a relevant skill, follow it strictly, do not mix responsibilities.
 
@@ -80,6 +110,7 @@ Before performing a task: search for a relevant skill, follow it strictly, do no
 | Deploy / CI          | `docs/engineering/DEPLOY.md` (TODO)     |
 | Persona profiles     | `docs/personas/*.md`                    |
 | Persona feedbacks    | `docs/feedbacks/**/*.md`                |
+| Agent flow           | `docs/AGENT_FLOW.md`                    |
 
 Search `docs/` before asking questions. Prefer existing documents over assumptions.
 
@@ -139,16 +170,16 @@ Key conventions:
 
 ## 6. Quality Gates
 
-Before commits:
+See `docs/engineering/QUALITY_GATES.md` for the full specification. Gates run in order: Lint → Test → i18n → Security.
+
+Quick reference — before commits:
 
 ```bash
-composer lint                    # PHP: format + rector + analyze (MANDATORY)
+composer lint                    # PHP: format + rector + analyze
 npm run lint && npm run types    # JS/TS: ESLint + TypeScript
 ```
 
-Before PRs: also run `composer test`.
-
-During AI development: `vendor/bin/pint --dirty --format agent`
+Before PRs: also run `composer test`. During AI development: `vendor/bin/pint --dirty --format agent`.
 
 ---
 

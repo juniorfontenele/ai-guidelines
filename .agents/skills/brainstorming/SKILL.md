@@ -142,9 +142,22 @@ Read the actual SKILL.md files to build an up-to-date catalog. The following is 
 
 Scan `.agents/workflows/` for available workflows and document them:
 
-| Workflow                  | Purpose                  | When to Use                   |
-| ------------------------- | ------------------------ | ----------------------------- |
-| `generate-commit-message` | Semantic commit messages | After completing code changes |
+| Workflow                  | Purpose                            | When to Use                            |
+| ------------------------- | ---------------------------------- | -------------------------------------- |
+| `generate-commit-message` | Semantic commit messages           | After completing code changes          |
+| `helpme`                  | Universal orchestrator             | Don't know where to start, any task    |
+| `deploy`                  | Pre-deploy checklist               | Before deploying to staging/production |
+| `preview`                 | Start dev server + browser preview | Validate UI changes locally            |
+| `status`                  | Project progress overview          | Check where the project stands         |
+| `full-pipeline`           | Full development lifecycle         | Starting new project or major feature  |
+| `code-review`             | Pre-PR review                      | Before opening a pull request          |
+| `add-stack`               | Add/activate stack pack            | Adding Node.js, Python, Go support     |
+| `debug`                   | Structured debugging               | Bug investigation beyond simple fix    |
+| `refactor`                | Refactoring with safety checks     | Code restructuring, cleanup            |
+| `test`                    | Run or generate tests              | Test suite, coverage, generate tests   |
+| `docs`                    | Generate/update documentation      | Create or update project docs          |
+| `improve-ui`              | UI/UX audit and improvement        | Fix ugly UI, align with design system  |
+| `i18n`                    | Translation audit, fix, and sync   | Check/fix translations, sync locales   |
 
 > **Note**: Always scan the actual workflow directory for the latest list.
 
@@ -168,6 +181,20 @@ Supporting skills (can be invoked at any point):
 - `developing-with-fortify` — Reference for auth features
 - `generate-persona` — Create persona profiles for feedback testing
 - `generate-persona-feedback` — Simulate persona behavior and generate actionable feedback
+
+Stack packs (additive, activated by `init-project` or `/add-stack`):
+
+- `stack-node` — Node.js/TypeScript patterns, quality gates, testing
+- `stack-python` — Python patterns, quality gates, testing
+- `stack-go` — Go patterns, quality gates, testing
+- `stack-bash` — Bash/Shell scripting patterns, quality gates, testing
+
+### Gap Detection
+
+During discovery, check if the detected/discussed stack has a matching stack pack. If not:
+
+> ⚠️ Seu projeto usa **[stack]**, mas o pack `stack-[name]` não está ativado.
+> Recomendo rodar `/add-stack` para ativar patterns e quality gates específicos.
 
 ### 4.4 Matching Rules
 
@@ -223,11 +250,11 @@ If none of the trigger conditions are met, **skip this phase entirely** and proc
 2. **Search** — Use `search_web` or `mcp_docker_mcp_search` to find relevant pages (max **3-5 queries**)
 3. **Deep dive** — Use `mcp_docker_mcp_fetch_content` to extract detailed content from the most relevant URLs (max **3 pages**)
 4. **Synthesize** — Structure findings into:
-    - Key features and capabilities
-    - Architecture patterns or technical approaches
-    - UX/UI design patterns
-    - Pricing models (if relevant)
-    - Strengths and weaknesses
+   - Key features and capabilities
+   - Architecture patterns or technical approaches
+   - UX/UI design patterns
+   - Pricing models (if relevant)
+   - Strengths and weaknesses
 5. **Integrate** — Feed research findings into Phase 2 (Structured Thinking) as additional input
 
 ### Guardrails
@@ -365,11 +392,11 @@ After approval, generate the full brainstorming document using [references/outpu
 5. Clearly separate **facts** from **opinions/recommendations**.
 6. Output must be **self-contained** — readable without conversation context.
 7. Incorporate all feedback from the Review Gate into the final document.
-8. **All file references must use project-relative paths** — never absolute `file:///` URIs. Example: `[DEMO_DATA.md](docs/DEMO_DATA.md)`, not `[DEMO_DATA.md](file:///home/.../docs/DEMO_DATA.md)`.
+8. **All file references must use project-relative paths** — never absolute `file:///` URIs. Example: `[DEMO_DATA.md](docs/DEMO_DATA.md)`, not `[DEMO_DATA.md](file:///absolute/path/to/docs/DEMO_DATA.md)`.
 
 Save the final document to:
 
-```
+```text
 docs/brainstorming/<NNNN>-<semantic-slug>.md
 ```
 
@@ -452,13 +479,13 @@ Always include "Salvar brainstorming" as the last option.
 
 ### Implementation Plan Artifact (Phase 3)
 
-```
+```text
 <appDataDir>/brain/<conversation-id>/implementation_plan.md
 ```
 
 ### Final Document (Phase 5)
 
-```
+```text
 docs/brainstorming/<NNNN>-<semantic-slug>.md
 ```
 

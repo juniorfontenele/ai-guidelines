@@ -1,10 +1,13 @@
 # Product Requirements Document (PRD)
 
-> This file is a **template placeholder**. Generate the actual PRD using the `/generate-prd` skill.
+> This file is the **main PRD** for the project. Generate content using the `/generate-prd` skill.
 >
 > ```
 > /generate-prd <describe your product or module>
 > ```
+>
+> **PRD Strategy**: This file defines the overall product. For complex features or significant
+> system changes that need separate detailed specifications, create individual PRDs in `docs/prd/<feature>.md`.
 
 ---
 

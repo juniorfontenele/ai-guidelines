@@ -2,7 +2,7 @@
 
 This directory contains task breakdowns organized by epic. Generate them using:
 
-```
+```text
 /generate-task-breakdown
 ```
 

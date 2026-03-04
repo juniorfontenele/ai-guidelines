@@ -287,7 +287,7 @@ docs/tasks/project-management.md          → docs/progress/project-management.m
 
 ### Status Transitions
 
-```
+```text
 TODO → IN_PROGRESS → DONE
                   ↘ FAILED → TODO (retry)
                   ↘ BLOCKED → TODO (when unblocked)
