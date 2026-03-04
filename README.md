@@ -20,32 +20,48 @@ Structured AI development guidelines for Laravel + React + Inertia projects. Wor
 
 ## Quick Start
 
-### 1. New Project
+### 1. Install
 
 ```bash
-# Create your Laravel project
-composer create-project laravel/laravel my-project
-cd my-project
+# Create your project (Laravel, Node, whatever)
+laravel new my-project && cd my-project
 
-# Copy guidelines into the project
+# Install the guidelines
+npx @jftecnologia/ai-guidelines install
+
+# Open your AI assistant and customize
+/init-project
+```
+
+### 2. Update (without losing customizations)
+
+```bash
+npx @jftecnologia/ai-guidelines update
+```
+
+The updater compares file hashes to detect what you changed. It only adds new files and updates untouched ones — your customizations are preserved.
+
+```bash
+# Preview what would change
+npx @jftecnologia/ai-guidelines update --dry-run
+
+# Force overwrite (backs up your files first)
+npx @jftecnologia/ai-guidelines update --force
+```
+
+<details>
+<summary>Manual installation (without npx)</summary>
+
+```bash
 cp -r /path/to/ai-guidelines/.agents .
 cp -r /path/to/ai-guidelines/.claude .
 cp -r /path/to/ai-guidelines/docs .
 cp /path/to/ai-guidelines/CLAUDE.md .
-
-# Start the AI assistant and run:
-/init-project
 ```
 
-The `init-project` skill will auto-detect your project, ask guided questions, and adapt the guidelines.
+Note: manual installation does not support smart updates.
 
-### 2. Existing Project
-
-Same copy steps as above. The `init-project` skill detects installed packages, versions, and existing patterns.
-
-### 3. Package Development
-
-Same flow — the `init-project` skill detects if it's a package (no `artisan`, no `config/`, etc.) and adjusts guidelines accordingly.
+</details>
 
 ---
 

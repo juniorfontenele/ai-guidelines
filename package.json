@@ -1,0 +1,34 @@
+{
+  "name": "@jftecnologia/ai-guidelines",
+  "version": "1.0.0",
+  "description": "Structured AI development guidelines for Laravel + React + Inertia projects. Works with Google Antigravity and Claude Code.",
+  "license": "MIT",
+  "bin": {
+    "ai-guidelines": "./bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    ".agents/",
+    ".claude/",
+    "docs/",
+    "CLAUDE.md",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "bash tests/test.sh"
+  },
+  "keywords": [
+    "ai",
+    "guidelines",
+    "laravel",
+    "react",
+    "inertia",
+    "claude",
+    "antigravity",
+    "development"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jftecnologia/ai-guidelines.git"
+  }
+}
