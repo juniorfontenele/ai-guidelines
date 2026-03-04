@@ -62,3 +62,6 @@ After each step, ask the user:
 > 2️⃣ Iterate on this step
 > 3️⃣ Skip next step
 > 4️⃣ Stop here for now
+
+> ⚠️ **Planning gate**: Each planning step must include Security and i18n considerations (see `AGENT_FLOW.md` §3.1)
+> ⚠️ **Post-code gate**: Implementation steps must execute Mandatory Gates (see `AGENT_FLOW.md` §3.2)

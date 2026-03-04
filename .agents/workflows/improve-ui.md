@@ -102,3 +102,5 @@ When fixing UI issues, always ensure:
 - Follow spacing scale from design system
 - Support both light and dark modes
 - Respect tenant-customizable colors (primary, secondary)
+
+> ⚠️ **Post-Code Gates**: Before committing UI changes, execute Mandatory Gates — especially i18n check (see `AGENT_FLOW.md` §3.2)

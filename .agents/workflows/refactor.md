@@ -66,3 +66,6 @@ Structured refactoring with analysis, planning, and safety validation.
    - Run lint
    - Compare behavior before/after (tests should still pass)
    - Report results to user
+
+> ⚠️ **Planning gate**: Include Security and i18n considerations in the refactoring plan (see `AGENT_FLOW.md` §3.1)
+> ⚠️ **Post-code gate**: Before committing, execute Mandatory Gates (see `AGENT_FLOW.md` §3.2)

@@ -54,3 +54,5 @@ Run or generate tests for the project.
    - If code bug → route to `/debug`
    - If outdated test → update test to match current behavior
    - Re-run to confirm fix
+
+> ⚠️ **Post-Code Gates**: After generating or fixing tests, execute Mandatory Gates (see `AGENT_FLOW.md` §3.2)

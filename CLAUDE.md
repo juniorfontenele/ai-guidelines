@@ -49,8 +49,9 @@ This template supports a structured AI-assisted development flow:
 | `/test`          | Run or generate tests                         |
 | `/docs`          | Generate/update documentation                 |
 | `/improve-ui`    | UI/UX audit and improvement                   |
+| `/i18n`          | Translation audit, fix, and sync              |
 
-**Pipeline orchestration**: See `docs/AGENT_FLOW.md` for skill routing and quality checkpoints.
+**Mandatory gates**: Security and i18n are enforced at both planning and post-code stages. See `docs/AGENT_FLOW.md` §3.
 
 Additional skills for development:
 

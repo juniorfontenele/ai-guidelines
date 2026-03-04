@@ -50,3 +50,5 @@ Systematic debugging flow for bugs that need investigation.
    - Route to `bug-fixer` skill or `implement-task` depending on complexity
    - Ensure tests cover the fix (three pillars)
    - Run quality gates
+
+> ⚠️ **Post-Code Gates**: Before committing fixes, execute Mandatory Gates (see `AGENT_FLOW.md` §3.2)

@@ -157,6 +157,7 @@ Scan `.agents/workflows/` for available workflows and document them:
 | `test`                    | Run or generate tests              | Test suite, coverage, generate tests   |
 | `docs`                    | Generate/update documentation      | Create or update project docs          |
 | `improve-ui`              | UI/UX audit and improvement        | Fix ugly UI, align with design system  |
+| `i18n`                    | Translation audit, fix, and sync   | Check/fix translations, sync locales   |
 
 > **Note**: Always scan the actual workflow directory for the latest list.
 

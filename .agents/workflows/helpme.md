@@ -81,3 +81,6 @@ Listen → Classify → Clarify → Route → Track → Report
 - Prefer WORKFLOWS over skills when both exist for the same task
 - If the request is very simple (< 1 min), just do it directly without heavy routing
 - Always answer in Portuguese (pt-BR)
+
+> ⚠️ **Planning gate**: When routing to planning skills, ensure Security and i18n considerations are included (see `AGENT_FLOW.md` §3.1)
+> ⚠️ **Post-code gate**: When routing to code-producing skills, ensure Post-Code Gates are executed (see `AGENT_FLOW.md` §3.2)

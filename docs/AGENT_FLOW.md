@@ -77,19 +77,90 @@ Map of the complete AI-assisted development pipeline, skill routing, and quality
 
 ---
 
-## 3. Quality Checkpoints
+## 3. Mandatory Gates
 
-### During Implementation (every task)
+Security and i18n are **cross-cutting concerns** enforced at two lifecycle stages: planning (prevent flawed designs) and post-code (catch implementation issues).
 
-```text
-Code Change ──▶ Lint ──▶ Test (3 pillars) ──▶ Security ──▶ Commit
+### 3.1 Planning Gates
+
+Applied during: `brainstorming`, `task-planner`, `/helpme`, `/refactor`, `/full-pipeline`
+
+#### 🔒 Security — Threat Analysis
+
+When planning any feature, change, or refactor:
+
+1. **Identify attack surface** — What data, endpoints, or permissions are involved?
+2. **Map OWASP risks** — Injection, broken auth, XSS, IDOR, mass assignment, etc.
+3. **Define mitigations** — Specific countermeasures for each identified risk
+4. **Flag in the plan** — Each mitigation must appear as a requirement, not a suggestion
+
+```markdown
+### Security Considerations (MANDATORY in plans)
+
+| Risk                  | OWASP Category           | Mitigation                         | Priority |
+| --------------------- | ------------------------ | ---------------------------------- | -------- |
+| User input → DB query | A03:2021 Injection       | Use Eloquent/parameterized queries | 🔴       |
+| File upload           | A04:2021 Insecure Design | Validate type, size, scan content  | 🔴       |
 ```
 
-- **Lint**: `composer lint` / stack equivalent (MANDATORY)
-- **Test**: Happy path + Unhappy path + Security path (MANDATORY)
-- **Security**: `security-analyst` on changed files (CRITICAL/HIGH block)
+#### 🌐 i18n — Translation Planning
 
-### Pre-PR
+When planning any feature that has user-facing output:
+
+1. **Identify user-facing strings** — Labels, messages, errors, notifications, emails
+2. **Define translation keys** — Propose key naming following project conventions
+3. **Flag in the plan** — List new translation keys needed
+
+```markdown
+### i18n Considerations (MANDATORY in plans)
+
+| Component         | Strings Count | Translation Keys               |
+| ----------------- | ------------- | ------------------------------ |
+| Form labels       | 5             | `vulnerabilities.form.*`       |
+| Flash messages    | 3             | `vulnerabilities.messages.*`   |
+| Validation errors | 4             | Use Laravel's `validation.php` |
+```
+
+### 3.2 Post-Code Gates
+
+Applied after: `implement-task`, `bug-fixer`, `/debug`, `/refactor`, `/improve-ui`, `/test`, any workflow that produces code.
+
+```text
+Code Change ──▶ Lint ──▶ Test (3 pillars) ──▶ i18n Check ──▶ Security Scan ──▶ Commit
+```
+
+#### Gate sequence (MANDATORY)
+
+| #   | Gate         | What                                     | Tool/Command                        | Blocks commit?         |
+| --- | ------------ | ---------------------------------------- | ----------------------------------- | ---------------------- |
+| 1   | **Lint**     | Code formatting + static analysis        | `composer lint` / stack equivalent  | ✅ Yes                 |
+| 2   | **Test**     | Happy + Unhappy + Security paths         | `composer test` / stack equivalent  | ✅ Yes                 |
+| 3   | **i18n**     | All user-facing strings use `t()`/`__()` | Quick grep or `i18n-manager`        | ✅ Yes                 |
+| 4   | **Security** | No injection, XSS, auth bypass, IDOR     | `security-analyst` on changed files | ✅ Critical/High block |
+
+#### Quick i18n check (post-code)
+
+```bash
+# Find hardcoded strings in changed files (PHP)
+git diff --name-only --diff-filter=ACMR -- '*.php' | xargs grep -n "['\"]\w" | grep -v "__(" | grep -v "'/\|\"/" | head -20
+
+# Find hardcoded strings in changed files (TSX)
+git diff --name-only --diff-filter=ACMR -- '*.tsx' | xargs grep -n ">\w" | grep -v "{t(" | head -20
+```
+
+#### Quick security check (post-code)
+
+Review changed files for:
+
+- Raw SQL queries (should use Eloquent/Query Builder)
+- `$request->all()` in mass assignment (should use `$request->validated()`)
+- Missing authorization checks (`$this->authorize()` or Policy)
+- Unescaped output in Blade (`{!! !!}` without sanitization)
+- Hardcoded secrets or credentials
+- Missing CSRF protection
+- Unrestricted file uploads
+
+### 3.3 Pre-PR
 
 ```text
 All Commits ──▶ /code-review ──▶ PR
@@ -98,15 +169,16 @@ All Commits ──▶ /code-review ──▶ PR
 - Full lint + test suite
 - Code quality review
 - Security review on changed files
+- i18n sync verification
 
-### Pre-Deploy
+### 3.4 Pre-Deploy
 
 ```text
 PR Merged ──▶ /deploy ──▶ Production
 ```
 
 - Quality gates pass
-- Translations sync
+- Translations sync verified
 - Build success
 - Migrations reviewed
 
@@ -114,15 +186,25 @@ PR Merged ──▶ /deploy ──▶ Production
 
 ## 4. Cross-Cutting Concerns
 
-### When to Run Each
+### Summary Table
 
-| Concern      | When                                          | Skill/Tool                   |
-| ------------ | --------------------------------------------- | ---------------------------- |
-| **i18n**     | After adding user-facing strings              | `i18n-manager`               |
-| **Security** | After changing auth, permissions, data access | `security-analyst`           |
-| **Tests**    | After any code change                         | `generate-test`              |
-| **Docs**     | After architecture/API changes                | Manual (see `CLAUDE.md` §10) |
-| **Progress** | Before/after each task in a batch             | `implement-task` (built-in)  |
+| Concern      | Planning Phase                           | Post-Code Phase                    | Standalone         |
+| ------------ | ---------------------------------------- | ---------------------------------- | ------------------ |
+| **Security** | Threat analysis + mitigations in plan    | Scan changed files for OWASP risks | `security-analyst` |
+| **i18n**     | Identify strings + plan translation keys | Verify `t()`/`__()` usage          | `/i18n` workflow   |
+| **Tests**    | Define test scenarios in plan            | Run 3-pillar tests                 | `/test` workflow   |
+| **Docs**     | —                                        | Update affected docs               | `/docs` workflow   |
+| **Progress** | —                                        | Update progress tracking           | `/status` workflow |
+
+### Workflow Reference
+
+All workflows and skills that produce code MUST reference the Mandatory Gates:
+
+> ⚠️ **Before finalizing**: execute Post-Code Gates (see `AGENT_FLOW.md` §3.2)
+
+All workflows and skills that plan code MUST include planning gates:
+
+> ⚠️ **During planning**: include Security and i18n considerations (see `AGENT_FLOW.md` §3.1)
 
 ### Gap Detection
 
