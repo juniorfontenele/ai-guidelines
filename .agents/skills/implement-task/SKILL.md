@@ -1,6 +1,15 @@
 ---
 name: implement-task
 description: "Universal executor for development tasks. Use when the user asks to implement, develop, code, fix, build, or create something (e.g., 'implement CTI-01', 'desenvolva a task SP-02', 'implemente a feature X', 'corrija esse bug', 'crie o endpoint Y', 'fix issue #42'). Accepts inputs from task breakdowns (docs/tasks/), implementation plans (from task-planner), GitHub issues, bug reports, or direct user instructions. Follows engineering standards, creates semantic branches/commits, runs quality gates (lint, test, security), and updates progress tracking. For bugs requiring root cause investigation (unknown cause, error logs, screenshots), prefer `bug-fixer`."
+dependencies:
+  skills: [generate-test, security-analyst]
+  docs:
+    [
+      docs/engineering/QUALITY_GATES.md,
+      docs/engineering/CODE_STANDARDS.md,
+      docs/engineering/TESTING.md,
+      docs/engineering/WORKFLOW.md,
+    ]
 ---
 
 # Task Implementation
@@ -162,106 +171,11 @@ From CODE_STANDARDS.md:
 
 ## 4. Quality Gates
 
-**All gates MUST pass before completing a task.** See `docs/engineering/QUALITY_GATES.md` for full details.
+**All gates MUST pass before completing a task.** See `docs/engineering/QUALITY_GATES.md` for the full specification.
 
-### Gate 1: Code Quality (Lint)
+> Execute gates in order: **Lint → Test → i18n → Security**. See the canonical doc for stack-specific commands, three pillar requirements, and failure handling.
 
-```bash
-composer lint
-npm run lint && npm run types
-```
-
-This runs Pint (formatting), Rector (refactoring), and PHPStan (analysis).
-
-**If lint fails:**
-
-1. Fix reported issues
-2. Re-run `composer lint`
-3. Commit fixes: `style: fix lint issues`
-
-### Gate 2: Tests (MANDATORY)
-
-> **Standard**: Follow `docs/engineering/TESTING.md` — all three pillars required.
-
-Tests are **always mandatory** when the task creates or modifies code.
-The only exception is when the **user explicitly requests** to skip tests.
-
-#### Step 1: Regression Baseline
-
-Before writing any code, run the full test suite to establish a baseline:
-
-```bash
-composer test
-```
-
-Record the result. Any test that passes now MUST still pass after implementation.
-
-#### Step 2: Write Tests
-
-Invoke **generate-test** skill:
-
-> Gere testes para os arquivos implementados nesta task
-
-generate-test will:
-- Analyze implemented code
-- Create appropriate test files
-- Ensure coverage of all three pillars
-- Run tests
-- Report results
-
-#### Step 3: Three Pillar Verification
-
-After tests pass, verify coverage of all three pillars from TESTING.md:
-
-- [ ] ✅ **Happy Path** — expected behavior with valid inputs
-- [ ] ❌ **Unhappy Path** — validation errors, invalid states, edge cases
-- [ ] 🔒 **Security Path** — tenant isolation, RBAC, IDOR, data leakage
-
-> ⚠️ A test file that only covers the happy path is **incomplete**. Missing pillars block task completion.
-
-#### Step 4: Regression Check
-
-Run the full test suite again:
-
-```bash
-composer test
-```
-
-If previously passing tests now fail → the task is **BLOCKED** until fixed.
-
-#### Step 5: Test Integrity Rule
-
-If an existing test fails after implementation:
-
-1. **Default action**: Fix the **code**, not the test
-2. **Exceptions** (justification required):
-   - The test was genuinely wrong (testing incorrect behavior)
-   - The logic was intentionally changed and the old test lost its meaning
-3. In exception cases: **raise the issue with the user BEFORE modifying the test**
-4. Always document the justification in the commit message
-
-> 🚫 **NEVER** weaken or delete tests to make broken code pass.
-
-Commit tests: `test(scope): add tests for [feature]`
-
-See [references/gate-checklist.md](references/gate-checklist.md) for detailed test gate steps.
-
-### Gate 3: Security Analysis
-
-Invoke **security-analyst** skill on files created/modified:
-
-> Analise a segurança dos arquivos modificados nesta task
-
-**If CRITICAL or HIGH findings:**
-
-- Must fix before completing task
-- Commit fixes: `fix(security): [description]`
-
-**If MEDIUM/LOW/INFO findings:**
-
-- Inform user, proceed with their decision
-
-See [references/gate-checklist.md](references/gate-checklist.md) for detailed validation steps.
+See [references/gate-checklist.md](references/gate-checklist.md) for detailed validation steps specific to this skill.
 
 ---
 
@@ -377,9 +291,9 @@ fix: Preserve context in queued jobs
 1. Report the failure clearly
 2. Propose a fix
 3. Ask user how to proceed:
-    - Fix and retry
-    - Skip with justification
-    - Abort task
+   - Fix and retry
+   - Skip with justification
+   - Abort task
 
 ### If Task Cannot Be Completed
 
@@ -409,15 +323,15 @@ When implementing multiple tasks together:
 **For each task in the batch, follow this exact sequence:**
 
 1. **BEFORE starting task N:**
-    - Update `docs/progress/<epic-slug>.md` with `IN_PROGRESS` status
-    - Update `docs/progress/README.md` table and totals
-    - This must happen BEFORE writing any code for that task
+   - Update `docs/progress/<epic-slug>.md` with `IN_PROGRESS` status
+   - Update `docs/progress/README.md` table and totals
+   - This must happen BEFORE writing any code for that task
 
 2. **AFTER completing task N:**
-    - Update progress with `DONE` status and commit hash
-    - Update `docs/progress/README.md` table and totals
-    - Update `docs/progress/README.md` progress status, decisions made, and next steps
-    - Commit the progress update
+   - Update progress with `DONE` status and commit hash
+   - Update `docs/progress/README.md` table and totals
+   - Update `docs/progress/README.md` progress status, decisions made, and next steps
+   - Commit the progress update
 
 **DO NOT batch progress updates.** Each task's progress must be updated individually as you work through them.
 

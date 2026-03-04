@@ -51,7 +51,6 @@ Map of the complete AI-assisted development pipeline, skill routing, and quality
 | "Quero criar algo novo"              | `brainstorming` → `generate-prd`                 | `generate-architecture`, `generate-ui-design` |
 | "Implementar feature X"              | `task-planner`                                   | `frontend-development`, `generate-test`       |
 | "Corrigir bug #N"                    | `bug-fixer`                                      | `generate-test`                               |
-| "Refatorar módulo X"                 | `task-planner` (refactor)                        | `code-reviewer`, `generate-test`              |
 | "Redesenhar tela Y"                  | `brainstorming` (layout)                         | `generate-ui-design`, `frontend-development`  |
 | "Review de segurança"                | `security-analyst`                               | `project-qa-auditor`                          |
 | "Auditar antes do PR"                | `/code-review` workflow                          | `security-analyst`, `code-reviewer`           |
@@ -129,36 +128,7 @@ Applied after: `implement-task`, `bug-fixer`, `/debug`, `/refactor`, `/improve-u
 Code Change ──▶ Lint ──▶ Test (3 pillars) ──▶ i18n Check ──▶ Security Scan ──▶ Commit
 ```
 
-#### Gate sequence (MANDATORY)
-
-| #   | Gate         | What                                     | Tool/Command                        | Blocks commit?         |
-| --- | ------------ | ---------------------------------------- | ----------------------------------- | ---------------------- |
-| 1   | **Lint**     | Code formatting + static analysis        | `composer lint` / stack equivalent  | ✅ Yes                 |
-| 2   | **Test**     | Happy + Unhappy + Security paths         | `composer test` / stack equivalent  | ✅ Yes                 |
-| 3   | **i18n**     | All user-facing strings use `t()`/`__()` | Quick grep or `i18n-manager`        | ✅ Yes                 |
-| 4   | **Security** | No injection, XSS, auth bypass, IDOR     | `security-analyst` on changed files | ✅ Critical/High block |
-
-#### Quick i18n check (post-code)
-
-```bash
-# Find hardcoded strings in changed files (PHP)
-git diff --name-only --diff-filter=ACMR -- '*.php' | xargs grep -n "['\"]\w" | grep -v "__(" | grep -v "'/\|\"/" | head -20
-
-# Find hardcoded strings in changed files (TSX)
-git diff --name-only --diff-filter=ACMR -- '*.tsx' | xargs grep -n ">\w" | grep -v "{t(" | head -20
-```
-
-#### Quick security check (post-code)
-
-Review changed files for:
-
-- Raw SQL queries (should use Eloquent/Query Builder)
-- `$request->all()` in mass assignment (should use `$request->validated()`)
-- Missing authorization checks (`$this->authorize()` or Policy)
-- Unescaped output in Blade (`{!! !!}` without sanitization)
-- Hardcoded secrets or credentials
-- Missing CSRF protection
-- Unrestricted file uploads
+> **Full specification**: See `docs/engineering/QUALITY_GATES.md` for detailed gate sequence, commands, failure handling, and stack-specific instructions.
 
 ### 3.3 Pre-PR
 
@@ -213,3 +183,18 @@ When any skill detects that a required stack pack is missing:
 1. Check `.agents/skills/stack-*` for the relevant pack
 2. If missing, suggest: `> ⚠️ Stack pack not found. Run /add-stack to activate.`
 3. Do NOT block — continue with best-effort using core skills
+
+---
+
+## 5. Skill vs Workflow Disambiguation
+
+Skills are specialized executors. Workflows are orchestrators that may invoke skills. When both exist for a similar domain:
+
+| Domain      | Workflow       | Skill           | Use Workflow when...                            | Use Skill when...                                |
+| ----------- | -------------- | --------------- | ----------------------------------------------- | ------------------------------------------------ |
+| Debugging   | `/debug`       | `bug-fixer`     | Bug is vague, needs investigation, no ticket    | Clear ticket/issue exists, known root cause area |
+| Code Review | `/code-review` | `code-reviewer` | Pre-PR review (lint + test + security + review) | Deep code health audit only (no lint/test run)   |
+| i18n        | `/i18n`        | `i18n-manager`  | Quick audit/fix flow                            | Full sync, detailed scan, programmatic use       |
+| Refactoring | `/refactor`    | `task-planner`  | Code restructuring with safety checks           | Planning-only before executing                   |
+
+> **Rule**: When in doubt, prefer the **workflow** — it provides the orchestration layer and calls the skill internally.

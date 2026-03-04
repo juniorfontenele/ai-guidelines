@@ -73,6 +73,8 @@ brainstorming → generate-prd → generate-architecture → generate-ui-design 
                                                                          task-planner (standalone) ─┘
 ```
 
+> For the complete lifecycle, routing table, and quality gates, see `docs/AGENT_FLOW.md`.
+
 ### Skills
 
 | Skill                       | Purpose                            | Trigger                      |

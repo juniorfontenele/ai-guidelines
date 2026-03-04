@@ -15,7 +15,7 @@
     "README.md"
   ],
   "scripts": {
-    "test": "bash tests/test.sh"
+    "test": "bash tests/test.sh && bash tests/validate-guidelines.sh"
   },
   "keywords": [
     "ai",

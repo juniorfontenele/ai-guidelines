@@ -88,21 +88,21 @@ Some visual elements are **tenant-customizable** and must be respected:
 
 Code changes that affect system behavior MUST include documentation updates:
 
-| Change Type                    | Update Target                                              |
-|--------------------------------|------------------------------------------------------------|
-| Architecture / structure       | `docs/architecture/*.md`                                   |
-| Roles / permissions            | `docs/RBAC_GUIDE.md` + `docs/architecture/SECURITY.md`    |
-| New features                   | `docs/PRD.md` (relevant sections)                          |
-| Configuration additions        | `docs/architecture/CONFIGURATION.md`                       |
-| Database schema                | `docs/architecture/DATABASE.md`                            |
-| Task progress                  | `docs/tasks/*.md` + `docs/progress/*.md`                   |
-| Design system / components     | `docs/design/*.md`                                         |
-| Data flows                     | `docs/architecture/DATA_FLOW.md`                           |
+| Change Type                | Update Target                                          |
+| -------------------------- | ------------------------------------------------------ |
+| Architecture / structure   | `docs/architecture/*.md`                               |
+| Roles / permissions        | `docs/RBAC_GUIDE.md` + `docs/architecture/SECURITY.md` |
+| New features               | `docs/PRD.md` (relevant sections)                      |
+| Configuration additions    | `docs/architecture/CONFIGURATION.md`                   |
+| Database schema            | `docs/architecture/DATABASE.md`                        |
+| Task progress              | `docs/tasks/*.md` + `docs/progress/*.md`               |
+| Design system / components | `docs/design/*.md`                                     |
+| Data flows                 | `docs/architecture/DATA_FLOW.md`                       |
 
 **Rule**: do NOT deliver code without updating the affected documentation.
 If unsure which docs are affected: list candidates and ask the user.
 
-> Reference: `CLAUDE.md` §9
+> Reference: `CLAUDE.md` §10
 
 ---
 

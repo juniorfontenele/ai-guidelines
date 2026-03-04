@@ -391,7 +391,7 @@ After approval, generate the full brainstorming document using [references/outpu
 5. Clearly separate **facts** from **opinions/recommendations**.
 6. Output must be **self-contained** — readable without conversation context.
 7. Incorporate all feedback from the Review Gate into the final document.
-8. **All file references must use project-relative paths** — never absolute `file:///` URIs. Example: `[DEMO_DATA.md](docs/DEMO_DATA.md)`, not `[DEMO_DATA.md](file:///home/.../docs/DEMO_DATA.md)`.
+8. **All file references must use project-relative paths** — never absolute `file:///` URIs. Example: `[DEMO_DATA.md](docs/DEMO_DATA.md)`, not `[DEMO_DATA.md](file:///absolute/path/to/docs/DEMO_DATA.md)`.
 
 Save the final document to:
 

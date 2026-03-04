@@ -136,3 +136,37 @@ Detectei tudo automaticamente. Preciso apenas de:
 4. Accept free-form answers ("use React with Inertia") in addition to numbered options
 5. If the user says "padrão" or "default", accept all defaults
 6. Maximum 2 rounds of questions
+7. Store the chosen locale in `.ai-guidelines.json` as `locale` field
+
+---
+
+## 7. Agent Communication
+
+### Q7.1: Agent Locale
+
+```markdown
+9️⃣ **Idioma do agente** — Em qual idioma devo me comunicar com você?
+a) pt-BR (padrão — respostas, comentários, commits em pt-BR)
+b) en (respostas, comentários, commits em inglês)
+c) Outro (especifique)
+```
+
+This sets the `locale` field in `.ai-guidelines.json` and affects:
+
+- Agent responses and explanations
+- Commit messages and PR descriptions
+- Code comments (when not using English convention)
+- Documentation generation language
+
+---
+
+## 8. Monorepo (if detected)
+
+### Q8.1: Workspace Scope
+
+```markdown
+🔟 **Monorepo** — Detectei um monorepo. Onde devo aplicar as guidelines?
+a) Raiz do monorepo (todas as workspaces)
+b) Workspace específica (especifique qual)
+c) Cada workspace independentemente
+```

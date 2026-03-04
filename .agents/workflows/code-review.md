@@ -10,10 +10,10 @@ description: Quick pre-PR code review — run lint, tests, security analysis, an
    // turbo
 
    ```bash
-   git diff --name-only main...HEAD
+   git diff --name-only master...HEAD
    ```
 
-   If no diff against `main`, use:
+   If no diff against `master`, use:
 
    ```bash
    git diff --name-only HEAD~5

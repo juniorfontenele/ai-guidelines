@@ -62,16 +62,19 @@ Silently gather as much project context as possible before asking the user anyth
 8. **Has `package.json` without `composer.json`** → Node.js project
 9. **Has `go.mod`** → Go project
 10. **Has `requirements.txt` or `pyproject.toml`** → Python project
-11. **Has `Cargo.toml`** → Rust project
+11. **Has `.sh` scripts or `Makefile` with shell commands** → Bash/Shell project
+12. **Has `packages/`, `apps/`, or workspace config** (`pnpm-workspace.yaml`, `workspaces` in `package.json`, `composer.json` with `repositories.*.type=path`) → Monorepo
 
 ### Output
 
 A structured detection report (internal, not shown to user yet):
 
 ```
-Project Type: application | package
+Project Type: application | package | monorepo
 Project Name: <from composer.json or package.json>
-Stack: Laravel | Node.js | Python | Go | Rust | Multi-stack
+Stack: Laravel | Node.js | Python | Go | Bash | Multi-stack
+Monorepo: yes | no (if yes, list workspace packages)
+Locale: <detected locale or 'en' default>
 PHP Version: <detected> (if applicable)
 Laravel Version: <detected> (if applicable)
 Node Version: <detected> (if applicable)

@@ -172,37 +172,7 @@ Before requesting review:
 
 ## AI-Assisted Development Workflow
 
-### Development Pipeline
-
-The project supports a structured AI-assisted development flow:
-
-0. **`/brainstorming`** — Structure ideas, explore options, refine specs
-1. **`/generate-prd`** — Define product requirements in `docs/PRD.md`
-2. **`/generate-architecture`** — Create system architecture in `docs/architecture/`
-3. **`/generate-ui-design`** — Define UI/UX design specifications in `docs/design/`
-4. **`/generate-task-breakdown`** — Break requirements into tasks in `docs/tasks/`
-5. **`/task-planner`** — Plan and optionally route to implementation
-6. **`/implement-task`** — Implement individual tasks with quality gates
-
-**Alternative**: **`/task-planner`** can plan + delegate to `implement-task` for features, tasks, or refactors from natural language descriptions.
-
-### Available Skills
-
-| Skill                       | Purpose                                        |
-| --------------------------- | ---------------------------------------------- |
-| `brainstorming`             | Ideation, spec refinement, layout/UI planning  |
-| `task-planner`              | Plan + route features, tasks, or refactors     |
-| `frontend-development`      | React + Inertia + Tailwind + Radix + Wayfinder |
-| `generate-test`             | PestPHP test generation                        |
-| `developing-with-fortify`   | Auth reference (login, 2FA, password reset)    |
-| `security-analyst`          | OWASP Top 10 security review                   |
-| `browser-qa-tester`         | Autonomous UX/UI QA via browser subagent       |
-| `project-qa-auditor`        | QA audit before PR/deploy                      |
-| `bug-fixer`                 | Fix bugs from GitHub Issues or user reports    |
-| `i18n-manager`              | i18n audit, fix, and translation sync          |
-| `generate-persona`          | Generate structured persona profiles           |
-| `generate-persona-feedback` | Simulate persona behavior, generate feedback   |
-| `skill-creator`             | Creating new skills                            |
+For the complete AI-assisted development pipeline, skill routing table, available skills, quality gates, and cross-cutting concerns, see `docs/AGENT_FLOW.md`.
 
 ### Using Laravel Boost (MCP)
 

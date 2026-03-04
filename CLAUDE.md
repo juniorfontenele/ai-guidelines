@@ -20,7 +20,7 @@ Never override a skill or documentation rule using assumptions.
 
 ## 2. Template Development Workflow
 
-This template supports a structured AI-assisted development flow:
+This template supports a structured AI-assisted development flow. For the complete lifecycle, skill routing, and quality gates, see `docs/AGENT_FLOW.md`.
 
 0. **`/init-project`** — First-time setup: detect project context, adapt guidelines
 1. **`/brainstorming`** — Structure ideas, explore options, refine specs in `docs/brainstorming/`
@@ -170,16 +170,16 @@ Key conventions:
 
 ## 6. Quality Gates
 
-Before commits:
+See `docs/engineering/QUALITY_GATES.md` for the full specification. Gates run in order: Lint → Test → i18n → Security.
+
+Quick reference — before commits:
 
 ```bash
-composer lint                    # PHP: format + rector + analyze (MANDATORY)
+composer lint                    # PHP: format + rector + analyze
 npm run lint && npm run types    # JS/TS: ESLint + TypeScript
 ```
 
-Before PRs: also run `composer test`.
-
-During AI development: `vendor/bin/pint --dirty --format agent`
+Before PRs: also run `composer test`. During AI development: `vendor/bin/pint --dirty --format agent`.
 
 ---
 
