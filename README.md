@@ -27,7 +27,7 @@ Structured AI development guidelines for Laravel + React + Inertia projects. Wor
 laravel new my-project && cd my-project
 
 # Install the guidelines
-npx @jftecnologia/ai-guidelines install
+npx @juniorfontenele/ai-guidelines install
 
 # Open your AI assistant and customize
 /init-project
@@ -36,17 +36,17 @@ npx @jftecnologia/ai-guidelines install
 ### 2. Update (without losing customizations)
 
 ```bash
-npx @jftecnologia/ai-guidelines update
+npx @juniorfontenele/ai-guidelines update
 ```
 
 The updater compares file hashes to detect what you changed. It only adds new files and updates untouched ones — your customizations are preserved.
 
 ```bash
 # Preview what would change
-npx @jftecnologia/ai-guidelines update --dry-run
+npx @juniorfontenele/ai-guidelines update --dry-run
 
 # Force overwrite (backs up your files first)
-npx @jftecnologia/ai-guidelines update --force
+npx @juniorfontenele/ai-guidelines update --force
 ```
 
 <details>

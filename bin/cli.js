@@ -415,10 +415,10 @@ function printDiffs(targetDir, conflicts) {
 
 function showHelp() {
   console.log(`
-${c.bold}@jftecnologia/ai-guidelines${c.reset} — AI development guidelines installer
+${c.bold}@juniorfontenele/ai-guidelines${c.reset} — AI development guidelines installer
 
 ${c.bold}Usage:${c.reset}
-  npx @jftecnologia/ai-guidelines <command> [options]
+  npx @juniorfontenele/ai-guidelines <command> [options]
 
 ${c.bold}Commands:${c.reset}
   ${c.cyan}install${c.reset}    Copy guideline files to the current project
@@ -432,16 +432,16 @@ ${c.bold}Options:${c.reset}
 
 ${c.bold}Examples:${c.reset}
   ${c.dim}# First-time install${c.reset}
-  npx @jftecnologia/ai-guidelines install
+  npx @juniorfontenele/ai-guidelines install
 
   ${c.dim}# Update (preserves your changes)${c.reset}
-  npx @jftecnologia/ai-guidelines update
+  npx @juniorfontenele/ai-guidelines update
 
   ${c.dim}# See what would change${c.reset}
-  npx @jftecnologia/ai-guidelines update --dry-run
+  npx @juniorfontenele/ai-guidelines update --dry-run
 
   ${c.dim}# Force update with backup${c.reset}
-  npx @jftecnologia/ai-guidelines update --force
+  npx @juniorfontenele/ai-guidelines update --force
 
 ${c.bold}After installing:${c.reset}
   Open your AI assistant and run ${c.cyan}/init-project${c.reset} to customize.
