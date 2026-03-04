@@ -81,7 +81,7 @@ Code changes that affect system behavior MUST include documentation updates:
 | -------------------------- | --------------------------------------------------------------- |
 | Architecture / structure   | `docs/architecture/*.md`                                        |
 | Roles / permissions        | `docs/architecture/SECURITY.md` (or RBAC docs if present)       |
-| New features               | `docs/PRD.md` (main spec) or `docs/prd/*.md` (complex features) |
+| New features               | `docs/prd/*.md` (feature specs); keep `docs/PRD.md` as template |
 | Configuration additions    | `docs/architecture/CONFIGURATION.md`                            |
 | Database schema            | `docs/architecture/DATABASE.md`                                 |
 | Task progress              | `docs/tasks/*.md` + `docs/progress/*.md`                        |

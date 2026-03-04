@@ -6,7 +6,7 @@ trigger: always_on
 
 At the start of EVERY task (including follow-ups and refactors):
 
-### Fast Path (Trivial Tasks)
+## Fast Path (Trivial Tasks)
 
 If the user's request is trivial (a question, single-line fix, renaming, or simple clarification):
 
@@ -15,7 +15,7 @@ If the user's request is trivial (a question, single-line fix, renaming, or simp
 - Still follow language and code standards
 - Still declare guidance source in summary
 
-### Standard Path
+## Standard Path
 
 1. Open and strictly follow `CLAUDE.md` located at the repository root.
    This file is mandatory and authoritative for this workspace.
