@@ -13,6 +13,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.1.0](https://github.com/juniorfontenele/ai-guidelines/compare/v1.0.0...v1.1.0) (2026-03-05)
+
+
+### Features
+
+* add mandatory cross-cutting gates and /i18n workflow ([c9f6ae5](https://github.com/juniorfontenele/ai-guidelines/commit/c9f6ae5a8c97ad0a9a833b378f2874e775f0615a))
+* add orchestrator, UI/UX, debug, refactor, test, docs workflows ([6364543](https://github.com/juniorfontenele/ai-guidelines/commit/6364543e38573be1daa8b753c00fd00e0afe451c))
+* add workflows, stack packs, AGENT_FLOW, and automation scripts ([6200594](https://github.com/juniorfontenele/ai-guidelines/commit/6200594a964ae83d837e2a9493911d931337ed65))
+* **cli:** add npx installer/updater with smart merge ([94b8f23](https://github.com/juniorfontenele/ai-guidelines/commit/94b8f2362e814459b8db47f86a2d04109bdfdb5e))
+* consolidate guidelines, add new skills/workflows, and improve system architecture ([013323d](https://github.com/juniorfontenele/ai-guidelines/commit/013323dfe51d16723ede9a81c8c442b24a97c436))
+* consolidate guidelines, add new skills/workflows, and improve system architecture ([e53d13d](https://github.com/juniorfontenele/ai-guidelines/commit/e53d13d34bae0a7faa64cb419fbe78fd36c5f6da))
+
+
+### Bug Fixes
+
+* address CodeRabbit review feedback on PR [#2](https://github.com/juniorfontenele/ai-guidelines/issues/2) ([cd452e5](https://github.com/juniorfontenele/ai-guidelines/commit/cd452e59d673fbd3fc3c1506075a7bb220e7d119))
+* address CodeRabbit round 3 findings ([bbb69ac](https://github.com/juniorfontenele/ai-guidelines/commit/bbb69ac8f824f442d8e4a7928155c2ee59eb9dfe))
+* use explicit string comparison for release_created output ([9517806](https://github.com/juniorfontenele/ai-guidelines/commit/9517806ce0c94df37f57704b1cdbc00bbaeaf7ec))
+
+
+### Refactoring
+
+* generalize rules and fix CodeRabbit round 2 issues ([9a05c2c](https://github.com/juniorfontenele/ai-guidelines/commit/9a05c2c2185accec8dbfe0e3f4967fff1abb6cc8))
+* transform repository into agnostic AI development guidelines template ([f75bee2](https://github.com/juniorfontenele/ai-guidelines/commit/f75bee2f3477d4a4bd5879043f7a985df130066c))
+
 ## [Unreleased]
 
 ### Added
