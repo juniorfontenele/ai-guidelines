@@ -23,6 +23,7 @@ Accepts inputs from task breakdowns, implementation plans, GitHub issues, or dir
 ## Related References
 
 - [references/gate-checklist.md](references/gate-checklist.md) - Detailed gate validation steps
+- [references/compliance-checklist.md](references/compliance-checklist.md) - Unified compliance checklist (all gates)
 
 ---
 
@@ -276,6 +277,7 @@ fix: Preserve context in queued jobs
 - [x] `composer lint` passes
 - [x] `composer test` passes
 - [x] Security analysis: [PASS / PASS WITH WARNINGS]
+- [x] i18n verification: [PASS / N/A]
 
 ## Files Changed
 
@@ -369,7 +371,8 @@ Task implementation is complete when:
 3. ✅ `composer test` passes with tests covering all three pillars (Happy, Unhappy, Security)
 4. ✅ No regression — all previously passing tests still pass
 5. ✅ Security analysis shows no CRITICAL/HIGH issues
-6. ✅ Semantic commits made for each change
-7. ✅ Epic progress file updated (`docs/progress/<epic-slug>.md`)
-8. ✅ Progress README updated (`docs/progress/README.md`)
-9. ✅ User asked about Pull Request
+6. ✅ i18n verification shows no hardcoded user-facing strings
+7. ✅ Semantic commits made for each change
+8. ✅ Epic progress file updated (`docs/progress/<epic-slug>.md`)
+9. ✅ Progress README updated (`docs/progress/README.md`)
+10. ✅ User asked about Pull Request

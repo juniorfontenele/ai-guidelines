@@ -16,6 +16,7 @@ Diagnose and fix bugs following engineering standards with investigation, planni
 - [references/investigation-guide.md](references/investigation-guide.md) — Diagnostic tools and checklist by bug type
 - [references/gate-checklist.md](references/gate-checklist.md) — Quality gate validation steps
 - [references/fix-plan-template.md](references/fix-plan-template.md) — Fix plan template for user approval
+- `.agents/skills/implement-task/references/compliance-checklist.md` — Unified compliance checklist (all gates)
 
 ---
 
@@ -316,6 +317,22 @@ Invoke **security-analyst** skill on modified files.
 - **CRITICAL/HIGH** → Must fix before completing
 - **MEDIUM/LOW** → Inform user, proceed with their decision
 
+### Gate 4: i18n Verification
+
+Scan modified files for hardcoded user-facing strings:
+
+- **PHP files**: must use `__()`
+- **TSX/React files**: must use `t()` from `useLaravelReactI18n`
+- **Blade files**: must use `__()` or `@lang()`
+
+**If hardcoded strings found:**
+
+1. Replace with translation helpers
+2. Add keys to locale files
+3. Commit: `chore(i18n): add missing translations`
+
+> For a full audit, invoke the **i18n-manager** skill.
+
 ---
 
 ## 8. Phase 6: Completion
@@ -372,6 +389,7 @@ fix: <short description>
 - [x] `npm run lint && npm run types` passes
 - [x] `composer test` passes
 - [x] Security analysis: [PASS / PASS WITH WARNINGS]
+- [x] i18n verification: [PASS / N/A]
 
 Fixes #<issue-number>
 ```
@@ -409,6 +427,7 @@ Bug fix is complete when:
 5. ✅ `composer test` passes
 6. ✅ Regression test added (if test gap existed)
 7. ✅ Security analysis shows no CRITICAL/HIGH issues
-8. ✅ Semantic commits made
-9. ✅ Documentation updated (if affected)
-10. ✅ User asked about Pull Request
+8. ✅ i18n verification shows no hardcoded user-facing strings
+9. ✅ Semantic commits made
+10. ✅ Documentation updated (if affected)
+11. ✅ User asked about Pull Request

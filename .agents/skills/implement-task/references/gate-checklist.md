@@ -219,6 +219,57 @@ Do you want me to show detailed fix recommendations?
 
 ---
 
+## Gate 4: i18n Verification
+
+### What to Check
+
+Scan created/modified files for hardcoded user-facing strings:
+
+| File Type | Required Helper | Example |
+|-----------|----------------|---------|
+| PHP (controllers, actions) | `__('key')` | `__('projects.created_successfully')` |
+| TSX / React | `t('key')` via `useLaravelReactI18n` | `{t('projects.title')}` |
+| Blade | `__('key')` or `@lang('key')` | `{{ __('common.save') }}` |
+
+### How to Check
+
+Use `grep_search` on modified files to find patterns like:
+- Strings in PHP `return`, `flash()`, `message`, `title`, `label` — must be wrapped in `__()`
+- JSX text content and prop values — must use `t()`
+- Blade text content — must use `__()` or `@lang()`
+
+Exclude: variable names, log messages, exception messages, comments, route names, config keys.
+
+### Expected Output
+
+```text
+✅ i18n Verification: PASS
+
+No hardcoded user-facing strings found.
+```
+
+Or with issues:
+
+```text
+⚠️ i18n Verification: ISSUES FOUND
+
+Hardcoded strings found in:
+- src/Http/Controllers/ProjectController.php:45 — "Project created successfully"
+- resources/js/pages/Projects/Index.tsx:12 — "No projects found"
+
+Fix these before proceeding.
+```
+
+### Recovery
+
+1. Replace hardcoded strings with translation helpers
+2. Add translation keys to primary locale file
+3. Add translation keys to secondary locale file (if applicable)
+4. Commit: `chore(i18n): add missing translations`
+5. For full audit, invoke **i18n-manager** skill
+
+---
+
 ## Gate Order
 
 Execute gates in this order:
@@ -230,6 +281,8 @@ Execute gates in this order:
 ↓
 3. security-analyst  (validates security)
 ↓
+4. i18n check        (validates translations)
+↓
 ✅ All gates pass → Task can be completed
 ```
 
@@ -237,7 +290,8 @@ Execute gates in this order:
 
 - **Lint first**: Catches syntax/style issues that would affect other gates
 - **Tests second**: Validates code actually works (invoke generate-test if required)
-- **Security last**: Analyzes working, clean code
+- **Security third**: Analyzes working, clean code
+- **i18n last**: Non-blocking scan, quick to fix
 
 ---
 
@@ -249,6 +303,7 @@ Execute gates in this order:
 | Tests (required) | generate-test skill | Any test failure |
 | Tests (existing) | `composer test` | Any test failure |
 | Security | security-analyst skill | CRITICAL or HIGH findings |
+| i18n | `grep_search` + manual review | Hardcoded user-facing strings |
 
 ---
 

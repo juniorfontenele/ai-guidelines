@@ -218,12 +218,15 @@ When matching user needs to skills:
 | "Preciso fazer review de segurança" | `security-analyst`               | `project-qa-auditor`                          |
 | "Quero refatorar o módulo Z"        | `task-planner` (refactor)        | `generate-test`, `security-analyst`           |
 | "Preciso definir a arquitetura"     | `generate-architecture`          | `brainstorming` (architecture)                |
-| "Quero auditar antes do deploy"     | `project-qa-auditor`             | `security-analyst`                            |
+| "Quero auditar antes do deploy"     | `project-qa-auditor`             | `security-analyst`, `i18n-manager`            |
 | "Preciso criar testes"              | `generate-test`                  | —                                             |
 | "Quero implementar autenticação"    | `developing-with-fortify`        | `frontend-development`                        |
 | "Quero criar uma nova skill"        | `skill-creator`                  | `brainstorming` (skill)                       |
 | "Testar como a persona X"           | `generate-persona-feedback`      | `generate-persona`, `bug-fixer`               |
 | "Criar perfil de persona"           | `generate-persona`               | `generate-persona-feedback`                   |
+| "Verificar traduções" / "checar i18n" | `i18n-manager`                 | —                                             |
+| "Rodar checks antes do PR"          | Workflow `/pre-pr`               | —                                             |
+| "Quero revisar o código"            | `code-reviewer`                  | `security-analyst`                            |
 
 ---
 
