@@ -217,6 +217,10 @@ Communication: be concise — focus on what's important, not obvious details.
 
 If information is missing or ambiguous: do not guess, ask **one clear question**.
 
+> See also: `.agents/rules/03-factual-integrity.md` for anti-hallucination, evidence, and verification rules.
+> See also: `.agents/rules/04-professional-conduct.md` for expert posture, no people-pleasing, and evidence-based responses.
+> See also: `.agents/rules/02-transparency.md` §5-§6 for destructive action safeguards and bug fix commit protocol.
+
 ---
 
 ## 10. Documentation Maintenance
