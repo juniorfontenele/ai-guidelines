@@ -13,6 +13,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.2.0](https://github.com/juniorfontenele/ai-guidelines/compare/v1.1.0...v1.2.0) (2026-03-07)
+
+
+### Features
+
+* **rules:** add factual integrity, professional conduct, and destructive action safeguards ([c8c643e](https://github.com/juniorfontenele/ai-guidelines/commit/c8c643efb973dababb3312d518cb91e06065cc94))
+* **rules:** add factual integrity, professional conduct, and destructive action safeguards ([ef888ab](https://github.com/juniorfontenele/ai-guidelines/commit/ef888ab90c015061c30a96391a5dfbf484599c60))
+
 ## [1.1.0](https://github.com/juniorfontenele/ai-guidelines/compare/v1.0.0...v1.1.0) (2026-03-05)
 
 

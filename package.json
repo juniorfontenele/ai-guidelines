@@ -1,6 +1,6 @@
 {
   "name": "@juniorfontenele/ai-guidelines",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Structured AI development guidelines for Laravel + React + Inertia projects. Works with Google Antigravity and Claude Code.",
   "license": "MIT",
   "bin": {
