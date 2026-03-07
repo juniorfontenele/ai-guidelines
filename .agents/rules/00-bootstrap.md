@@ -66,6 +66,8 @@ This rule is complemented by:
 
 - **`01-quality-shield.md`** — View impact analysis, visual consistency, documentation maintenance
 - **`02-transparency.md`** — Decision justification, spec conflict detection, proactive improvement suggestions
+- **`03-factual-integrity.md`** — Anti-hallucination, evidence requirements, verification before assertion
+- **`04-professional-conduct.md`** — Expert posture, no people-pleasing, evidence-based responses, communication style
 
 ---
 

@@ -141,3 +141,66 @@ When presenting options or asking for user decisions, use a clear visual menu:
 - Include a footer inviting free-form comments
 - Place this section at the **end** of the response, after all context and analysis
 - NEVER bury decisions inside long paragraphs — they must be visually distinct
+
+---
+
+## 5. Destructive Actions — SafeToAutoRun Prohibition
+
+The following actions are **ALWAYS destructive** and MUST use `SafeToAutoRun = false`.
+No exceptions, even if the user explicitly requests auto-run.
+
+### Prohibited Commands (SafeToAutoRun = false ALWAYS)
+
+- `git branch -d` / `git branch -D` — delete local branches
+- `git push origin --delete` / `git push origin :branch` — delete remote branches
+- `rm`, `rm -rf`, `unlink` — delete files or directories
+- `DROP TABLE`, `DROP DATABASE`, `DELETE FROM`, `TRUNCATE` — destructive SQL
+- `php artisan migrate:rollback`, `migrate:reset`, `migrate:fresh` — destructive migrations
+- `composer remove` — remove packages
+- `npm uninstall` / `npm remove` — remove packages
+- Any command that permanently removes, deletes, or destroys data
+
+### Rule
+
+If a command matches any pattern above, or contains keywords `delete`, `remove`, `drop`,
+`truncate`, `destroy`, `purge`, `rm`, or `unlink`:
+
+1. **SafeToAutoRun = false** — requires explicit user approval in the command approval UI
+2. If the agent asked a question about the action, **STOP and WAIT** for the user's response
+   before proposing the command. NEVER ask a question and execute in the same turn.
+3. Asking a question and auto-executing the action in the same response is a **VIOLATION** —
+   the question must be genuine, not decorative.
+
+### Separation of Question and Execution
+
+When the agent needs user confirmation for a destructive action:
+
+1. **First response**: ask the question. END the response. Do NOT propose or run any command.
+2. **Second response** (after user confirms): propose the command with `SafeToAutoRun = false`.
+3. NEVER combine "should I do X?" with the execution of X in a single response.
+
+---
+
+## 6. Bug Fix Commit Protocol
+
+After fixing bugs or resolving reported problems:
+
+1. **Present the fix** — explain what was changed and why
+2. **Request user evaluation** — ask the user to verify the fix works as expected
+3. **WAIT for user confirmation** — do NOT commit until the user explicitly approves
+4. **Only then commit** — using conventional commit format after approval
+
+### Rule
+
+- NEVER auto-commit after a bug fix or problem resolution
+- The user MUST evaluate and confirm the fix before any `git add` / `git commit`
+- This applies to: bug fixes, error corrections, behavior adjustments, regression fixes
+- This does NOT apply to: planned feature implementation where the user has already approved the plan
+
+### Format
+
+After implementing a fix, end with:
+
+```text
+A correção foi aplicada. Verifique se o comportamento está correto antes de eu realizar o commit.
+```
