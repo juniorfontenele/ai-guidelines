@@ -13,6 +13,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.3.0](https://github.com/juniorfontenele/ai-guidelines/compare/v1.2.0...v1.3.0) (2026-03-07)
+
+
+### Features
+
+* **skills:** add i18n quality gate, pre-PR workflow, and compliance checklist ([ce699bd](https://github.com/juniorfontenele/ai-guidelines/commit/ce699bd17c4258aaca1e398b3bf7511915b50ac2))
+* **skills:** add i18n quality gate, pre-PR workflow, and compliance checklist ([cd51607](https://github.com/juniorfontenele/ai-guidelines/commit/cd51607fe028717c76c548a2615cc666077da18f))
+
 ## [1.2.0](https://github.com/juniorfontenele/ai-guidelines/compare/v1.1.0...v1.2.0) (2026-03-07)
 
 
