@@ -1,5 +1,14 @@
 # AI Development Guidelines
 
+[![Tests](https://github.com/juniorfontenele/ai-guidelines/actions/workflows/tests.yml/badge.svg)](https://github.com/juniorfontenele/ai-guidelines/actions/workflows/tests.yml)
+[![Release](https://github.com/juniorfontenele/ai-guidelines/actions/workflows/release.yml/badge.svg)](https://github.com/juniorfontenele/ai-guidelines/actions/workflows/release.yml)
+[![npm version](https://img.shields.io/npm/v/@juniorfontenele/ai-guidelines)](https://www.npmjs.com/package/@juniorfontenele/ai-guidelines)
+[![npm downloads](https://img.shields.io/npm/dm/@juniorfontenele/ai-guidelines)](https://www.npmjs.com/package/@juniorfontenele/ai-guidelines)
+[![GitHub stars](https://img.shields.io/github/stars/juniorfontenele/ai-guidelines)](https://github.com/juniorfontenele/ai-guidelines)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Node.js](https://img.shields.io/node/v/@juniorfontenele/ai-guidelines)](https://nodejs.org)
+
+
 Structured AI development guidelines for Laravel + React + Inertia projects. Works with **Google Antigravity** and **Claude Code**.
 
 > These guidelines transform AI assistants from general-purpose tools into specialized development partners with your coding style, standards, and workflow preferences.
