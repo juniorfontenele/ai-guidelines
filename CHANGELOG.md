@@ -13,6 +13,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.3.1](https://github.com/juniorfontenele/ai-guidelines/compare/v1.3.0...v1.3.1) (2026-03-07)
+
+
+### Documentation
+
+* add status badges to README ([81dd342](https://github.com/juniorfontenele/ai-guidelines/commit/81dd34250165dc532892bbbd4f75efb8da07cdd3))
+* add status badges to README ([3e2b7ee](https://github.com/juniorfontenele/ai-guidelines/commit/3e2b7ee0b74cf1160f46a996adb5b7f646e7e1f1))
+
 ## [1.3.0](https://github.com/juniorfontenele/ai-guidelines/compare/v1.2.0...v1.3.0) (2026-03-07)
 
 
